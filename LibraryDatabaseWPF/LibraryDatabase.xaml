@@ -13,22 +13,35 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ListBox>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <ListBox Grid.RowSpan="2">
+            <!-- TODO: Intregrate the database with the listbox-->
         </ListBox>
         <StackPanel Grid.Column="1">
-            <TextBox Name="uxSearchText"></TextBox>
-            <StackPanel Orientation="Horizontal" Height="35" VerticalAlignment="Top" HorizontalAlignment="Center">
+            <TextBox   Name="uxSearchText" Margin="10"></TextBox>
+            <StackPanel Margin="10" Orientation="Horizontal" Height="35" VerticalAlignment="Top" HorizontalAlignment="Right">
                 <ComboBox IsReadOnly="True">
-                    <RadioButton Content="All"  IsChecked="True"/>
+                    <RadioButton Content="Key Words"  IsChecked="True"/>
                     <RadioButton Content="Title"/>
-                    
+                    <RadioButton Content="Author"/>
+                    <RadioButton Content="ISBN"/>
+                    <RadioButton Content="Genre"/>
+
                 </ComboBox>
                 <Button Click="OnSearch_Click" Margin="10,0,10,0" Width="80">Search</Button>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Height="35" VerticalAlignment="Top" HorizontalAlignment="Center">
-                <Button Click="OnAddBook_Click" Margin="10,0,10,0" Width="80">Add Book</Button>
-                <Button Click="OnEditBook_Click" Margin="10,0,10,0" Width="80">Edit Book</Button>            
+                <Button Click="OnCheckIn_Click" Margin="10,0,10,0.2" Width="100">Check-In Book</Button>
+                <Button Click="OnCheckOut_Click" Margin="10,0,10,0.2" Width="100">Check-Out Book</Button>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal" Height="35" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Button Click="OnAddBook_Click" Margin="10,0,10,0.2" Width="110">Add Book</Button>
+                <Button Click="OnEditBook_Click" Margin="10,0,10,0.2" Width="110">Edit Selected Book</Button>
             </StackPanel>
         </StackPanel>
     </Grid>

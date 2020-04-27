@@ -27,17 +27,27 @@ namespace LibraryDatabaseWPF
 
         private void OnAddBook_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new AddEditBook());
         }
 
         private void OnEditBook_Click(object sender, RoutedEventArgs e)
         {
-
+            //TODO: navigate to AddEditBook with selected book as a parameter
         }
 
         private void OnSearch_Click(object sender, RoutedEventArgs e)
         {
+            //TODO: Use linq to filter through the database and desplay results to listbox
+        }
 
+        private void OnCheckIn_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO: Update Selected book to have the Checked in status.
+        }
+
+        private void OnCheckOut_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO: Update Selected book to have the Checked out status.
         }
     }
 }
