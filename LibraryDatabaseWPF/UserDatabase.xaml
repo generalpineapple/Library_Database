@@ -9,6 +9,34 @@
       Title="UserDatabase">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <ListBox Grid.RowSpan="2">
+            <!-- TODO: Intregrate the database with the listbox-->
+        </ListBox>
+        <StackPanel Grid.Column="1" Grid.RowSpan="2">
+            <TextBox   Name="uxSearchText" Margin="10"></TextBox>
+            <StackPanel Margin="10" Orientation="Horizontal" Height="35" VerticalAlignment="Top" HorizontalAlignment="Right">
+                <ComboBox IsReadOnly="True">
+                    <RadioButton Content="Key Words"  IsChecked="True"/>
+                    <RadioButton Content="Name"/>
+                    <RadioButton Content="Phone Number"/>
+                    <RadioButton Content="Email"/>
+                    <RadioButton Content="Late Returns"/>
+
+                </ComboBox>
+                <Button Click="OnSearch_Click" Margin="10,0,10,0.2" Width="80" Height="35" VerticalAlignment="Bottom">Search</Button>
+            </StackPanel>
+            <Button Click="OnAddUser_Click" Margin="10,50,10,10" Width="150" Height="40">Add User</Button>
+            <Button Click="OnEditUser_Click" Margin="10" Width="150" Height="40">Edit User</Button>
+            <!-- TODO: Decide if we want to be able to delete users-->
+            <Button Click="OnDeleteUser_Click" Margin="10" Width="150" Height="40">Delete User</Button>
+        </StackPanel>
     </Grid>
 </Page>

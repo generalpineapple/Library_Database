@@ -1,0 +1,33 @@
+﻿<Page x:Class="LibraryDatabaseWPF.AddEditUser"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:LibraryDatabaseWPF"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AddEditUser">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Margin="25">
+            <Label  Content="Name:" Margin="0,0,0,10" Height="30" VerticalAlignment="Center"/>
+            <Label Margin="0,10" Height="30" VerticalAlignment="Center" Content="Email:"/>
+            <Label Margin="0,10" Height="30" VerticalAlignment="Center" Content="Phone Number:"/>
+            <Label Margin="0,10" Height="30" VerticalAlignment="Center" Content="Address:"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1" >
+            <TextBox Name="uxName" Height="20" Margin="0,30,0,0" Width="300" HorizontalAlignment="Left"/>
+            <TextBox Name="uxEmail" Height="20" Margin="0,30,0,0" Width="300" HorizontalAlignment="Left"/>
+            <TextBox Name="uxNumber"  Height="20" Margin="0,30,0,0" Width="300" HorizontalAlignment="Left"/>
+            <TextBox Name="uxAddress"  Height="20" Margin="0,30,0,0" Width="300" HorizontalAlignment="Left"/>
+        </StackPanel>
+        <Button Click="OnConfirm_Click" Grid.Column="1" Content="Confirm" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" Height="40" Width="100" />
+        <Button Click="OnCancel_Click" Grid.Column="1" Content="Cancel" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10" Height="40" Width="100" />
+
+    </Grid>
+</Page>

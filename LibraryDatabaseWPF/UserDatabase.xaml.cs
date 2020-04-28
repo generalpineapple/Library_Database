@@ -24,5 +24,25 @@ namespace LibraryDatabaseWPF
         {
             InitializeComponent();
         }
+
+        private void OnAddUser_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AddEditUser());
+        }
+
+        private void OnEditUser_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO: Navigate to AddEditUser with selected user as parameter
+        }
+
+        private void OnDeleteUser_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO: Delete User From the database
+        }
+
+        private void OnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO: Use Linq to filter users and display result to listbox
+        }
     }
 }
