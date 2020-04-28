@@ -33,16 +33,17 @@
                 </ComboBox>
                 <Button Click="OnSearch_Click" Margin="10,0,10,0" Width="80">Search</Button>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Height="35" VerticalAlignment="Top" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" Height="35" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10">
                 <Button Click="OnCheckIn_Click" Margin="10,0,10,0.2" Width="100">Check-In Book</Button>
                 <Button Click="OnCheckOut_Click" Margin="10,0,10,0.2" Width="100">Check-Out Book</Button>
             </StackPanel>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal" Height="35" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Button Click="OnAddBook_Click" Margin="10,0,10,0.2" Width="110">Add Book</Button>
-                <Button Click="OnEditBook_Click" Margin="10,0,10,0.2" Width="110">Edit Selected Book</Button>
+                <Button Click="OnAddBook_Click" Margin="10,0,15,0.2" Width="120">Add Book</Button>
+                <Button Click="OnEditBook_Click" Margin="15,0,10,0.2" Width="120">Edit Selected Book</Button>
             </StackPanel>
+            <Button Click="OnDeleteBook_Click" Margin="10,20,10,0.2" Height="35" Width="120">Delete Selected Book</Button>
         </StackPanel>
     </Grid>
 </Page>
