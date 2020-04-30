@@ -81,45 +81,6 @@ namespace LibraryDatabaseWPF
             closeConnection(); 
         }
 
-        /// <summary>
-        /// Updates the username and password in the app config
-        /// </summary>
-        static void UpdateConfig()
-        {
-            string strUsername = ""; 
-            string strPassword = "";
-            try
-            {
-                var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                var settings = configFile.AppSettings.Settings;
-
-                // update username in the config
-                if (settings["username"] == null)
-                {
-                    settings.Add("username", strUsername);
-                }
-                else
-                {
-                    settings["username"].Value = strUsername;
-                }
-
-                // update username in the config
-                if (settings["password"] == null)
-                {
-                    settings.Add("password", strPassword);
-                }
-                else
-                {
-                    settings["password"].Value = strPassword;
-                }
-
-                configFile.Save(ConfigurationSaveMode.Modified);
-                ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
-            }
-            catch (ConfigurationErrorsException)
-            {
-                Console.WriteLine("Error writing app settings");
-            }
-        }
+       
     }
 }
