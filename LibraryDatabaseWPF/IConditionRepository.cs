@@ -7,7 +7,7 @@ using LibraryDatabaseWPF.Models;
 
 namespace LibraryDatabaseWPF
 {
-    public interface IBookRepository
+    public interface IConditionRepository
     {
         /// <summary>
         /// Retrieves all persons in the database.
@@ -15,7 +15,7 @@ namespace LibraryDatabaseWPF
         /// <returns>
         /// <see cref="IReadOnlyList{Person}"/> containing all persons.
         /// </returns>
-        IReadOnlyList<Books> RetrieveBooks();
+        IReadOnlyList<Condition> RetrieveCondition();
 
         /// <summary>
         /// Fetches the person with the given <paramref name="personId"/> if it exists.
@@ -27,7 +27,7 @@ namespace LibraryDatabaseWPF
         /// <exception cref="DataAccess.RecordNotFoundException">
         /// Thrown if <paramref name="personId"/> does not exist.
         /// </exception>
-         Books FetchBook(int bookId);
+        Condition FetchCondition(int conditionId);
 
         /// <summary>
         /// Creates a new person in the repository.
@@ -38,6 +38,6 @@ namespace LibraryDatabaseWPF
         /// <returns>
         /// The resulting instance of <see cref="Person"/>.
         /// </returns>
-        Books CreateBook(int bookId, string isbn, int authorId, string title, string genreName, string conditionType);
+        Condition CreateCondition(int id, ConditionType type);
     }
 }
