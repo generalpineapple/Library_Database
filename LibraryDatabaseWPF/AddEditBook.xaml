@@ -38,9 +38,40 @@
             </StackPanel>
         </Grid>
 
-        <WrapPanel Grid.Column="1" Margin="25">
-            <Label Margin="10" >Genre:</Label>
-            <RadioButton Margin="10" Name="uxGenre" Content="Action"/>
+        <WrapPanel Grid.Column="1" Margin="0">
+            <Label Margin="0" Height="27" >Genre:</Label>
+            <RadioButton Margin="7"  GroupName="uxGenre" Content="Arts/Photography"/>
+            <RadioButton Margin="7" GroupName="uxGenre" Content="Biographies/Memoirs"/>
+            <RadioButton Margin="7" GroupName="uxGenre" Content="Business/Money"/>
+            <RadioButton Margin="7" GroupName="uxGenre" Content="Calendars"/>
+            <RadioButton Margin="7" GroupName="uxGenre" Content="Childrens Books"/>
+            <RadioButton Margin="7" GroupName="uxGenre" Content="Comics/Graphic Novels"/>
+            <RadioButton Margin="7" GroupName="uxGenre" Content="Computers/Technology"/>
+            <RadioButton Margin="7" GroupName="uxGenre" Content="Cookbooks, Food/Wine"/>
+            <RadioButton Margin="7" GroupName="uxGenre" Content="Crafts, Hobbies/Home"/>
+            <RadioButton Margin="7" GroupName="uxGenre" Content="Christian Books/Bibles"/>
+            <RadioButton Margin="7" GroupName="uxGenre" Content="Engineering/Transportation"/>
+            <RadioButton Margin="7" GroupName="uxGenre" Content="Health, Fitness/Dieting"/>
+            <RadioButton Margin="7" GroupName="uxGenre" Content="History"/>
+            <RadioButton Margin="7" GroupName="uxGenre" Content="Law"/>
+            <RadioButton Margin="7" GroupName="uxGenre" Content="Humor/Entertainment"/>
+            <RadioButton Margin="7" GroupName="uxGenre" Content="Literature/Fiction"/>
+            <RadioButton Margin="7" GroupName="uxGenre" Content="Medical Books"/>
+            <RadioButton Margin="7" GroupName="uxGenre" Content="Mystery, Thriller/Suspense"/>
+            <RadioButton Margin="7" GroupName="uxGenre" Content="Parenting/Relationships"/>
+            <RadioButton Margin="7" GroupName="uxGenre" Content="Politics"/>
+            <RadioButton Margin="7" GroupName="uxGenre" Content="Reference"/>
+            <RadioButton Margin="7" GroupName="uxGenre" Content="Religion/Spirituality"/>
+            <RadioButton Margin="7" GroupName="uxGenre" Content="Romance"/>
+            <RadioButton Margin="7" GroupName="uxGenre" Content="Science/Math"/>
+            <RadioButton Margin="7" GroupName="uxGenre" Content="Science Fiction/Fantasy"/>
+            <RadioButton Margin="7" GroupName="uxGenre" Content="Self-Help"/>
+            <RadioButton Margin="7" GroupName="uxGenre" Content="Sports/Outdoors"/>
+            <RadioButton Margin="7" GroupName="uxGenre" Content="Teen/Young Adult"/>
+            <RadioButton Margin="7" GroupName="uxGenre" Content="Test Preparation"/>
+            <RadioButton Margin="7" GroupName="uxGenre" Content="Travel"/>
+            <RadioButton Margin="7" GroupName="uxGenre" Content="Gay/Lesbian"/>
+            <RadioButton Margin="7" GroupName="uxGenre" Content="Education/Teaching"/>
             <!-- TODO: Add all genres-->
         </WrapPanel>
         <Button Click="OnCancel_Click" Content="Cancel" Height="50" Width="125" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="25" />
