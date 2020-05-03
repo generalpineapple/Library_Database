@@ -63,6 +63,8 @@
       <DependentUpon>AddEditUser.xaml</DependentUpon>
     </Compile>
     <Compile Include="DBConnection.cs" />
+    <Compile Include="IAuthorRepository.cs" />
+    <Compile Include="IBookRepository.cs" />
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
