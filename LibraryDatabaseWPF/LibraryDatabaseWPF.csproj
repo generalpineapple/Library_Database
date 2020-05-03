@@ -66,6 +66,14 @@
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Authors.cs" />
+    <Compile Include="Models\Books.cs" />
+    <Compile Include="Models\CheckedOut.cs" />
+    <Compile Include="Models\Condition.cs" />
+    <Compile Include="Models\ConditionType.cs" />
+    <Compile Include="Models\Genres.cs" />
+    <Compile Include="Models\Inventory.cs" />
+    <Compile Include="Models\Users.cs" />
     <Compile Include="UserDatabase.xaml.cs">
       <DependentUpon>UserDatabase.xaml</DependentUpon>
     </Compile>
