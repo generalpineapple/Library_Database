@@ -148,5 +148,16 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="SQL\Procedures\Library.CreateAuthor.sql" />
+    <Content Include="SQL\Procedures\Library.CreateBook.sql" />
+    <Content Include="SQL\Procedures\Library.CreateInventory.sql" />
+    <Content Include="SQL\Procedures\Library.CreateUser.sql" />
+    <Content Include="SQL\Procedures\Library.CreateUserReport.sql" />
+    <Content Include="SQL\Procedures\Library.FetchBookByISBN.sql" />
+    <Content Include="SQL\Procedures\Library.FetchBookByTitle.sql" />
+    <Content Include="SQL\Procedures\Library.FetchUsersRentingBookByISBN.sql" />
+    <Content Include="SQL\Procedures\Library.GetBooksFromUser.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

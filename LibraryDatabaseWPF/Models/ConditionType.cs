@@ -8,8 +8,8 @@ namespace LibraryDatabaseWPF.Models
 {
     public enum ConditionType
     {
-        New,
-        Worn,
-        Replace
+        New = 1,
+        Worn = 2,
+        Replace = 3
     }
 }
