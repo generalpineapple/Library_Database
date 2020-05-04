@@ -169,6 +169,8 @@
     <Content Include="Procedures\Library.EditBookQuality.sql" />
     <Content Include="Procedures\Library.EditInventoryByISBN.sql" />
     <Content Include="Procedures\Library.EditUserById.sql" />
+    <Content Include="Procedures\Library.FetchAllBooks.sql" />
+    <Content Include="Procedures\Library.FetchAllUsers.sql" />
     <Content Include="Procedures\Library.FetchBookByAuthor.sql" />
     <Content Include="Procedures\Library.FetchBookByISBN.sql" />
     <Content Include="Procedures\Library.FetchBookByTitle.sql" />
