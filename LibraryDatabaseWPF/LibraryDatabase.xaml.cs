@@ -78,11 +78,6 @@ namespace LibraryDatabaseWPF
             //TODO: Update Selected book to have the Checked out status.
         }
 
-        private void OnDeleteBook_Click(object sender, RoutedEventArgs e)
-        {
-            //TODO: Delete Selected book from Database
-        }
-
         private void OnGetTopBooksByGenre_Click(object sender, RoutedEventArgs e)
         {
             if(DataContext is ViewModel viewModel)

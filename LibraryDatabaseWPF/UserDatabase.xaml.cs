@@ -33,15 +33,10 @@ namespace LibraryDatabaseWPF
 
         private void OnEditUser_Click(object sender, RoutedEventArgs e)
         {
-            if(uxListBox.SelectedItem is Users user)
+            if (uxListBox.SelectedItem is Users user)
             {
                 NavigationService.Navigate(new AddEditUser(user));
             }
-        }
-
-        private void OnDeleteUser_Click(object sender, RoutedEventArgs e)
-        {
-            //TODO: Delete User From the database
         }
 
         private void OnSearch_Click(object sender, RoutedEventArgs e)
@@ -83,9 +78,13 @@ namespace LibraryDatabaseWPF
 
         private void OnGetUserReport_Click(object sender, RoutedEventArgs e)
         {
-            if (DataContext is ViewModel viewModel) 
-            { 
-               //TODO
+            if (uxListBox.SelectedItem is Users user)
+            {
+                if (DataContext is ViewModel viewModel)
+                {
+                    UserReport userReport = viewModel.usersRepository.CreateUserReport(user.Name);
+                    UserReportWindow userReportWindow = new UserReportWindow(userReport);
+                }
             }
 
         }

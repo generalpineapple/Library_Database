@@ -1,0 +1,33 @@
+﻿<Window x:Class="LibraryDatabaseWPF.UserReportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LibraryDatabaseWPF"
+        mc:Ignorable="d"
+        Title="UserReportWindow" Height="369.691" Width="345.985">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <Label Height="30" Margin="5" Content="User Id:"/>
+            <Label Height="30" Margin="5" Content="Current Checkouts:"/>
+            <Label Height="30" Margin="5" Content="On Time Returns:"/>
+            <Label Height="30" Margin="5" Content="Late Returns:"/>
+            <Label Height="30" Margin="5" Content="Overdue Books:"/>
+            <Label Height="30" Margin="5" Content="Days Late:"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <TextBlock Height="30" Margin="5" Name="uxID"/>
+            <TextBlock Height="30" Margin="5" Name="uxCurrent"/>
+            <TextBlock Height="30" Margin="5" Name="uxOnTime"/>
+            <TextBlock Height="30" Margin="5" Name="uxLate"/>
+            <TextBlock Height="30" Margin="5" Name="uxOverdue"/>
+            <TextBlock Height="30" Margin="5" Name="uxDays"/>
+        </StackPanel>
+
+        <Button Grid.ColumnSpan="2" Height="30" Width="110" Margin="20" HorizontalAlignment="Center" VerticalAlignment="Bottom" Content="Close" Click="OnClose_Click"/>
+    </Grid>
+</Window>
