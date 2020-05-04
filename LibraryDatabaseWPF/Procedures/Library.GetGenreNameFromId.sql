@@ -14,7 +14,7 @@ BEGIN TRY
 	
 	IF @@ROWCOUNT = 0
 	BEGIN
-		DECLARE @Message NVARCHAR(256) = FORMATMESSAGE(N'No Genre with Id %d exists.', @AuthorId);
+		DECLARE @Message NVARCHAR(256) = FORMATMESSAGE(N'No Genre with Id %d exists.', @GenreId);
 		THROW 50000, @Message, 1;
 	END;
 END TRY
