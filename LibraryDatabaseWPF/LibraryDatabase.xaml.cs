@@ -139,6 +139,7 @@ namespace LibraryDatabaseWPF
         {
             if (DataContext is ViewModel viewModel)
             {
+                uxListBox.ItemsSource = new List<Object>();
                 uxListBox.ItemsSource = viewModel.BookList;
             }
         }

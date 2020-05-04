@@ -10,7 +10,9 @@ namespace LibraryDatabaseWPF
     public class ViewModel
     {
         //private readonly string connectionString = @"Server=localhost\SQLEXPRESS;Database=master;Integrated Security=SSPI";
-        private readonly string connectionString = @"Data Source = mssql.cs.ksu.edu; Initial Catalog = sbrunner5124; User ID = sbrunner5124; Password=Adpyr235124";
+        //private readonly string connectionString = @"Data Source = mssql.cs.ksu.edu; Initial Catalog = sbrunner5124; User ID = sbrunner5124; Password=Adpyr235124";
+        private readonly string connectionString = @"Data Source = mssql.cs.ksu.edu; Database = sbrunner5124; User ID = sbrunner5124; Password=Adpyr235124";
+
 
         public IList<Books> BookList { get; set; }
         public IList<Users> UserList { get; set; }

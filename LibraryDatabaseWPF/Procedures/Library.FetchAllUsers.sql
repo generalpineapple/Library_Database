@@ -7,4 +7,5 @@ GO
 CREATE PROCEDURE [Library].FetchAllUsers
 AS
 SELECT U.UserId, U.Name, U.TotalCheckouts, U.PhoneNumber, U.Email, U.LateReturns
-FROM Library.Users U
+FROM Library.Users U; 
+GO

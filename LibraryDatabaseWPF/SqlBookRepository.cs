@@ -160,13 +160,13 @@ namespace LibraryDatabaseWPF
                     using (var command = new SqlCommand("Library.FetchBookByAuthor", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
-                        command.Parameters.AddWithValue("AuthorName", authorName);
+                        command.Parameters.AddWithValue("Author", authorName);
 
                         connection.Open();
 
-                        command.ExecuteNonQuery();
+                        //command.ExecuteNonQuery();
 
-                        transaction.Complete();
+                        //transaction.Complete();
 
                         using (var reader = command.ExecuteReader())
                             return TranslateBooks(reader);
@@ -222,9 +222,9 @@ namespace LibraryDatabaseWPF
 
                         connection.Open();
 
-                        command.ExecuteNonQuery();
+                        //command.ExecuteNonQuery();
 
-                        transaction.Complete();
+                        //transaction.Complete();
 
                         using (var reader = command.ExecuteReader())
                             return TranslateBook(reader);
@@ -384,9 +384,9 @@ namespace LibraryDatabaseWPF
 
                         connection.Open();
 
-                        command.ExecuteNonQuery();
+                        //command.ExecuteNonQuery();
 
-                        transaction.Complete();
+                        //transaction.Complete();
 
                         using (var reader = command.ExecuteReader())
                         {
@@ -462,9 +462,9 @@ namespace LibraryDatabaseWPF
             var genreIdOrdinal = reader.GetOrdinal("GenreId");
             var conditionIdOrdinal = reader.GetOrdinal("ConditionId");
 
-            string authorName = GetAuthorNameFromId(reader.GetInt32(authorIdOrdinal));
-            string genreName = GetGenreNameFromId(reader.GetInt32(genreIdOrdinal));
-            string conditionType = GetGenreNameFromId(reader.GetInt32(conditionIdOrdinal));
+            string authorName = "temp"; //GetAuthorNameFromId(reader.GetInt32(authorIdOrdinal));
+            string genreName = "temp";// GetGenreNameFromId(reader.GetInt32(genreIdOrdinal));
+            string conditionType = "temp"; //GetGenreNameFromId(reader.GetInt32(conditionIdOrdinal));
 
 
             if (!reader.Read())
