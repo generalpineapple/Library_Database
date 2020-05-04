@@ -16,10 +16,12 @@ BEGIN TRY
     CROSS APPLY
     (
         SELECT TOP(5)
-            books.ISBN, 
+            books.BookId,
+            books.ISBN,
+            books.Title,
             books.GenreId, 
-            books.AuthorId, 
-            inventory.TotalCheckouts
+            books.AuthorId,
+            books.ConditionId
         FROM 
             Library.Inventory inventory
             INNER JOIN 
