@@ -12,9 +12,11 @@ namespace LibraryDatabaseWPF
 
         Books CreateBook(string isbn, string authorName, string title, string genreName, string conditionType);
 
+        IReadOnlyList<Books> FetchBookByAuthor(string authorName);
+
         Books EditBookQuality(int bookId, int conditionId);
 
-        IReadOnlyList<Books> FetchBookByAuthor(string authorName);
+        IReadOnlyList<Books> FetchAllBooks();
 
         Books FetchBookFromISBN(string isbn);
 

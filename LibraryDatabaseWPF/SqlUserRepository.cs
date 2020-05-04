@@ -69,6 +69,28 @@ namespace LibraryDatabaseWPF
             }
         }
 
+        public IReadOnlyList<Users> FetchAllUsers()
+        {
+            using (var transaction = new TransactionScope())
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    using (var command = new SqlCommand("Library.FetchAllUsers", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        connection.Open();
+
+                        command.ExecuteNonQuery();
+
+                        transaction.Complete();
+
+                        using (var reader = command.ExecuteReader())
+                            return TranslateUsers(reader);
+                    }
+                }
+            }
+        }
         /// <summary>
         /// Edit a user by ID
         /// </summary>

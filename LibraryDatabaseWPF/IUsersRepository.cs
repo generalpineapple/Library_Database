@@ -15,6 +15,8 @@ namespace LibraryDatabaseWPF
 
         IReadOnlyList<Users> FetchUserRentingBookByISBN(string isbn);
 
-        public IReadOnlyList<Users> GetTopUsers();
+        IReadOnlyList<Users> GetTopUsers();
+
+        IReadOnlyList<Users> FetchAllUsers();
     }
 }

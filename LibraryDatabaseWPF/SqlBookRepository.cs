@@ -79,7 +79,30 @@ namespace LibraryDatabaseWPF
                 }
             }
         }
-        
+
+        public IReadOnlyList<Books> FetchAllBooks()
+        {
+            using (var transaction = new TransactionScope())
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    using (var command = new SqlCommand("Library.FetchAllBooks", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        connection.Open();
+
+                        command.ExecuteNonQuery();
+
+                        transaction.Complete();
+
+                        using (var reader = command.ExecuteReader())
+                            return TranslateBooks(reader);
+                    }
+                }
+            }
+        }
+
         /// <summary>
         /// edit the condition of a book 
         /// </summary>
