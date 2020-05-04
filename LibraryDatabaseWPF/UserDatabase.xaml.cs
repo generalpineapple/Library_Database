@@ -21,9 +21,26 @@ namespace LibraryDatabaseWPF
     /// </summary>
     public partial class UserDatabase : Page
     {
+        private Books book;
         public UserDatabase()
         {
             InitializeComponent();
+            uxAdd.IsEnabled = true;
+            uxEdit.IsEnabled = true;
+            uxReport.IsEnabled = true;
+            uxTop.IsEnabled = true;
+            uxCheckout.IsEnabled = false;
+        }
+
+        public UserDatabase(Books book)
+        {
+            InitializeComponent();
+            this.book = book;
+            uxAdd.IsEnabled = false;
+            uxEdit.IsEnabled = false;
+            uxReport.IsEnabled = false;
+            uxTop.IsEnabled = false;
+            uxCheckout.IsEnabled = true;
         }
 
         private void OnAddUser_Click(object sender, RoutedEventArgs e)
@@ -87,6 +104,18 @@ namespace LibraryDatabaseWPF
                 }
             }
 
+        }
+
+        private void OnCheckout_Click(object sender, RoutedEventArgs e)
+        {
+            if(uxListBox.SelectedItem is Users user)
+            {
+                if(DataContext is ViewModel viewModel)
+                {
+                    viewModel.checkedOutRepository.CreateCheckedOut(book.BookId, user.UserId);
+                    NavigationService.Navigate(new ChooseDatabase());
+                }
+            }
         }
     }
 }

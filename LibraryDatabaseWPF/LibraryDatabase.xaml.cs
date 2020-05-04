@@ -75,7 +75,11 @@ namespace LibraryDatabaseWPF
 
         private void OnCheckOut_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: Update Selected book to have the Checked out status.
+            if(uxListBox.SelectedItem is Books book)
+            {
+                
+            }
+
         }
 
         private void OnGetTopBooksByGenre_Click(object sender, RoutedEventArgs e)

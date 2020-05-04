@@ -25,7 +25,7 @@ namespace LibraryDatabaseWPF
         public MainWindow()
         {
             InitializeComponent();
-            ViewModel viewModel = new ViewModel(new SqlBookRepository(connectionString), new SqlUserRepository(connectionString));
+            ViewModel viewModel = new ViewModel(new SqlBookRepository(connectionString), new SqlUserRepository(connectionString), new SqlCheckedOutRepository(connectionString));
             DataContext = viewModel;
         }
 
