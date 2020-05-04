@@ -22,9 +22,11 @@ namespace LibraryDatabaseWPF
     public partial class AddEditBook : Page
     {
         private Books book = null;
+        private ViewModel view = new ViewModel();
         public AddEditBook()
         {
             InitializeComponent();
+            DataContext = view;
         }
 
         public AddEditBook(Books book)
@@ -37,7 +39,8 @@ namespace LibraryDatabaseWPF
             uxISBN.IsEnabled = false;
             uxAuthor.Text = book.AuthorName;
             uxAuthor.IsEnabled = false;
-            
+            DataContext = view;
+
         }
 
         private void OnCancel_Click(object sender, RoutedEventArgs e)
@@ -56,7 +59,7 @@ namespace LibraryDatabaseWPF
         {
             if (DataContext is ViewModel viewModel)
             {
-                if (book.Equals(null))
+                if (book == null)
                 {
                     if (!String.IsNullOrWhiteSpace(uxTitle.Text) && !String.IsNullOrWhiteSpace(uxISBN.Text) && !String.IsNullOrWhiteSpace(uxAuthor.Text))
                     {

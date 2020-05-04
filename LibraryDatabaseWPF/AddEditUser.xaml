@@ -21,10 +21,10 @@
             <Label Margin="0,10" Height="30" VerticalAlignment="Center" Content="Address:"/>
         </StackPanel>
         <StackPanel Grid.Column="1" >
-            <TextBox Name="uxName" Height="20" Margin="0,30,0,0" Width="300" HorizontalAlignment="Left"/>
-            <TextBox Name="uxEmail" Height="20" Margin="0,30,0,0" Width="300" HorizontalAlignment="Left"/>
-            <TextBox Name="uxNumber"  Height="20" Margin="0,30,0,0" Width="300" HorizontalAlignment="Left"/>
-            <TextBox Name="uxAddress"  Height="20" Margin="0,30,0,0" Width="300" HorizontalAlignment="Left"/>
+            <TextBox Name="uxName" Height="20" Margin="0,30,0,0" Width="300" HorizontalAlignment="Left" Text=""></TextBox>
+            <TextBox Name="uxEmail" Height="20" Margin="0,30,0,0" Width="300" HorizontalAlignment="Left" Text=""></TextBox>
+            <TextBox Name="uxNumber"  Height="20" Margin="0,30,0,0" Width="300" HorizontalAlignment="Left" Text=""/>
+            <TextBox Name="uxAddress"  Height="20" Margin="0,30,0,0" Width="300" HorizontalAlignment="Left" Text=""/>
         </StackPanel>
         <Button Click="OnConfirm_Click" Grid.Column="1" Content="Confirm" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" Height="40" Width="100" />
         <Button Click="OnCancel_Click" Grid.Column="1" Content="Cancel" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10" Height="40" Width="100" />

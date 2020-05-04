@@ -21,18 +21,21 @@ namespace LibraryDatabaseWPF
     /// </summary>
     public partial class AddEditUser : Page
     {
+        private ViewModel view = new ViewModel();
         private int userId = -1;
         public AddEditUser()
         {
             InitializeComponent();
+            DataContext = view;
         }
 
         public AddEditUser(Users users)
         {
             userId = users.UserId;
-            uxName.Text = users.Name;
             uxEmail.Text = users.Email;
             uxNumber.Text = users.PhoneNumber;
+            uxName.Text = users.Name;
+            DataContext = view;
             //TODO: add Address
         }
 
