@@ -172,7 +172,9 @@
     <Content Include="Procedures\Library.FetchUsersRentingBookByISBN.sql" />
     <Content Include="Procedures\Library.GetBooksFromUser.sql" />
     <Content Include="Procedures\Library.GetTopBooksByGenre.sql" />
+    <Content Include="Procedures\Library.GetTopUsers.sql" />
     <Content Include="Procedures\Library.ReturnCheckedOut.sql" />
+    <Content Include="SQL_Data\Full_Data_Script.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
