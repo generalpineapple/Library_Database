@@ -21,6 +21,7 @@ namespace LibraryDatabaseWPF
     /// </summary>
     public partial class UserDatabase : Page
     {
+        private ViewModel view = new ViewModel();
         private Books book;
         public UserDatabase()
         {
@@ -30,6 +31,7 @@ namespace LibraryDatabaseWPF
             uxReport.IsEnabled = true;
             uxTop.IsEnabled = true;
             uxCheckout.IsEnabled = false;
+            DataContext = view;
         }
 
         public UserDatabase(Books book)
@@ -41,6 +43,7 @@ namespace LibraryDatabaseWPF
             uxReport.IsEnabled = false;
             uxTop.IsEnabled = false;
             uxCheckout.IsEnabled = true;
+            DataContext = view;
         }
 
         private void OnAddUser_Click(object sender, RoutedEventArgs e)

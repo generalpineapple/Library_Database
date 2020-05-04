@@ -21,9 +21,11 @@ namespace LibraryDatabaseWPF
     /// </summary>
     public partial class LibraryDatabase : Page
     {
+        private ViewModel view = new ViewModel();
         public LibraryDatabase()
         {
             InitializeComponent();
+            DataContext = view;
         }
 
         private void OnAddBook_Click(object sender, RoutedEventArgs e)
