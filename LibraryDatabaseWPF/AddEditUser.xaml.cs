@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LibraryDatabaseWPF.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,12 +21,20 @@ namespace LibraryDatabaseWPF
     /// </summary>
     public partial class AddEditUser : Page
     {
+        private int userId = -1;
         public AddEditUser()
         {
             InitializeComponent();
         }
 
-        //TODO: Add a constructor to allow the ability to edit a user in the database
+        public AddEditUser(Users users)
+        {
+            userId = users.UserId;
+            uxName.Text = users.Name;
+            uxEmail.Text = users.Email;
+            uxNumber.Text = users.PhoneNumber;
+        }
+
 
         private void OnCancel_Click(object sender, RoutedEventArgs e)
         {
@@ -41,7 +50,25 @@ namespace LibraryDatabaseWPF
 
         private void OnConfirm_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: add or update the user to the database
+            if(DataContext is ViewModel viewModel)
+            {
+                if (!String.IsNullOrWhiteSpace(uxName.Text) && !String.IsNullOrWhiteSpace(uxAddress.Text) && !String.IsNullOrWhiteSpace(uxNumber.Text) && !String.IsNullOrWhiteSpace(uxEmail.Text)) 
+                {
+                    if (userId == -1)
+                        viewModel.usersRepository.CreateUser(uxName.Text, uxAddress.Text, uxNumber.Text, uxEmail.Text);
+                    else
+                        viewModel.usersRepository.EditUserById(userId, uxName.Text, uxAddress.Text, uxNumber.Text, uxEmail.Text);
+
+                    if (NavigationService.CanGoBack)
+                    {
+                        NavigationService.GoBack();
+                    }
+                    else
+                    {
+                        NavigationService.Navigate(new UserDatabase());
+                    }
+                }                
+            }
         }
     }
 }

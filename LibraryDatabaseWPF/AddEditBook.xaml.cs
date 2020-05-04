@@ -68,6 +68,15 @@ namespace LibraryDatabaseWPF
                 {
                     viewModel.bookRepository.EditBookQuality(book.BookId, uxCondition.SelectedIndex + 1);
                 }
+
+                if (NavigationService.CanGoBack)
+                {
+                    NavigationService.GoBack();
+                }
+                else
+                {
+                    NavigationService.Navigate(new LibraryDatabase());
+                }
             }
         }
 

@@ -40,7 +40,7 @@
 
         <WrapPanel Grid.Column="1" Margin="0">
             <Label Margin="0" Height="27" >Genre:</Label>
-            <RadioButton Margin="7" Name="G0"  GroupName="uxGenre" Content="Arts/Photography" Tag="Arts &amp; Photography"/>
+            <RadioButton Margin="7" Name="G0"  GroupName="uxGenre" Content="Arts/Photography" Tag="Arts &amp; Photography" IsChecked="True"/>
             <RadioButton Margin="7" Name="G1" GroupName="uxGenre" Content="Biographies/Memoirs" Tag="Biographies &amp; Memoirs"/>
             <RadioButton Margin="7" Name="G2" GroupName="uxGenre" Content="Business/Money" Tag="Business &amp; Money"/>
             <RadioButton Margin="7" Name="G3" GroupName="uxGenre" Content="Calendars" Tag="Calendars"/>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LibraryDatabaseWPF.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,7 +33,10 @@ namespace LibraryDatabaseWPF
 
         private void OnEditUser_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: Navigate to AddEditUser with selected user as parameter
+            if(uxListBox.SelectedItem is Users user)
+            {
+                NavigationService.Navigate(new AddEditUser(user));
+            }
         }
 
         private void OnDeleteUser_Click(object sender, RoutedEventArgs e)
@@ -81,7 +85,7 @@ namespace LibraryDatabaseWPF
         {
             if (DataContext is ViewModel viewModel) 
             { 
-               
+               //TODO
             }
 
         }
