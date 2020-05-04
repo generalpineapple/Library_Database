@@ -16,7 +16,7 @@ BEGIN TRY
 
     IF @@ROWCOUNT = 0
 	BEGIN
-		DECLARE @Message NVARCHAR(256) = FORMATMESSAGE(N'No books from ISBN %d exists.', @ISBN);
+		DECLARE @Message NVARCHAR(256) = FORMATMESSAGE(N'No books from ISBN %s exists.', @ISBN);
 		THROW 50000, @Message, 1;
 	END;
 END TRY

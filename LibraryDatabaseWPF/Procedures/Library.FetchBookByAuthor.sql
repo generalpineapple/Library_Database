@@ -17,7 +17,7 @@ BEGIN TRY
 
     IF @@ROWCOUNT = 0
 	BEGIN
-		DECLARE @Message NVARCHAR(256) = FORMATMESSAGE(N'No books from author id %d exists.', @AuthorId);
+		DECLARE @Message NVARCHAR(256) = FORMATMESSAGE(N'No books from author id %s exists.', @Author);
 		THROW 50000, @Message, 1;
 	END;
 END TRY
