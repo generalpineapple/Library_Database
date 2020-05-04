@@ -54,5 +54,15 @@ namespace LibraryDatabaseWPF
         {
             //TODO: Delete Selected book from Database
         }
+
+        private void OnGetTopBooksByGenre_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO
+        }
+
+        private void OnGetBooksToReplace_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO
+        }
     }
 }
