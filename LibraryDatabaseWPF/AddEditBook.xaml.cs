@@ -27,6 +27,11 @@ namespace LibraryDatabaseWPF
             InitializeComponent();
         }
 
+        /// <summary>
+        /// fills textboxes with current information and disables them.
+        /// only allows for condition of a book to be changed
+        /// </summary>
+        /// <param name="book"></param>
         public AddEditBook(Books book)
         {
             InitializeComponent();
@@ -40,6 +45,11 @@ namespace LibraryDatabaseWPF
             
         }
 
+        /// <summary>
+        /// returns to previous page if possible
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnCancel_Click(object sender, RoutedEventArgs e)
         {
             if (NavigationService.CanGoBack)
@@ -52,6 +62,13 @@ namespace LibraryDatabaseWPF
             }
         }
 
+        /// <summary>
+        /// checks to see if you are creating or editing a book
+        /// when creating a book calls on repo to create
+        /// when edit does the same
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnConfirm_Click(object sender, RoutedEventArgs e)
         {
             if (DataContext is ViewModel viewModel)
@@ -80,6 +97,13 @@ namespace LibraryDatabaseWPF
             }
         }
 
+        /// <summary>
+        /// does a aweful tedious process of searching through the long list of 31 genres, which I typed by hand, to find which of the buttons is selected
+        /// I mean come on 31 genres, really. One of the genres is calander. Why would a library even have calenders for check out purposes.
+        /// </summary>
+        /// <param name="defaultValue"></param>
+        /// <param name="buttons"></param>
+        /// <returns></returns>
         private string SelectedRadioValue(string defaultValue, params RadioButton[] buttons)
         {
             foreach (RadioButton button in buttons)

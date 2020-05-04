@@ -20,6 +20,10 @@ namespace LibraryDatabaseWPF
     /// </summary>
     public partial class UserReportWindow : Window
     {       
+        /// <summary>
+        /// this is self-explanitory
+        /// </summary>
+        /// <param name="userReport"></param>
         public UserReportWindow(UserReport userReport)
         {
             InitializeComponent();

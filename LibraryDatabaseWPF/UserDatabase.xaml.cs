@@ -22,6 +22,9 @@ namespace LibraryDatabaseWPF
     public partial class UserDatabase : Page
     {
         private Books book;
+        /// <summary>
+        /// confirms that all buttons are enabled except the checkout button
+        /// </summary>
         public UserDatabase()
         {
             InitializeComponent();
@@ -32,6 +35,10 @@ namespace LibraryDatabaseWPF
             uxCheckout.IsEnabled = false;
         }
 
+        /// <summary>
+        /// confirms all buttons are disabled but the checkout button
+        /// </summary>
+        /// <param name="book"></param>
         public UserDatabase(Books book)
         {
             InitializeComponent();
@@ -43,11 +50,21 @@ namespace LibraryDatabaseWPF
             uxCheckout.IsEnabled = true;
         }
 
+        /// <summary>
+        /// navigates to the add user page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnAddUser_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new AddEditUser());
         }
 
+        /// <summary>
+        /// navigates to the edit user page with a user as a paramiter
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnEditUser_Click(object sender, RoutedEventArgs e)
         {
             if (uxListBox.SelectedItem is Users user)
@@ -56,6 +73,13 @@ namespace LibraryDatabaseWPF
             }
         }
 
+        /// <summary>
+        /// gets the tag out of the comboBox
+        /// the tag tells it which kind of search it is doing
+        /// uses linq to filter though the database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnSearch_Click(object sender, RoutedEventArgs e)
         {
             if(DataContext is ViewModel viewModel)
@@ -85,6 +109,11 @@ namespace LibraryDatabaseWPF
             }
         }
 
+        /// <summary>
+        /// calls on the userRepo to activate a report quarry
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnGetTopUsers_Click(object sender, RoutedEventArgs e)
         {
             if (DataContext is ViewModel viewModel)
@@ -93,6 +122,11 @@ namespace LibraryDatabaseWPF
             }
         }
 
+        /// <summary>
+        /// calls on the userRepo to activate a report quarry on a specified user
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnGetUserReport_Click(object sender, RoutedEventArgs e)
         {
             if (uxListBox.SelectedItem is Users user)

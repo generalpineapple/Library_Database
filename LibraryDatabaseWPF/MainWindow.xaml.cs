@@ -29,6 +29,11 @@ namespace LibraryDatabaseWPF
             DataContext = viewModel;
         }
 
+        /// <summary>
+        /// allows user to go back to the previous page at any time
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnBack(object sender, RoutedEventArgs e)
         {
             if (DatabaseUI.NavigationService.CanGoBack)
@@ -41,6 +46,11 @@ namespace LibraryDatabaseWPF
             }
         }
 
+        /// <summary>
+        /// allows your to return to the choose database page at any time
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnReturn(object sender, RoutedEventArgs e)
         {
             DatabaseUI.NavigationService.Navigate(new ChooseDatabase());
