@@ -243,15 +243,15 @@ namespace LibraryDatabaseWPF
             {
                 using (var connection = new SqlConnection(connectionString))
                 {
-                    using (var command = new SqlCommand("Library.FetchBookByAuthor", connection))
+                    using (var command = new SqlCommand("Library.FetchBooksToReplace", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
 
                         connection.Open();
 
-                        command.ExecuteNonQuery();
+                        //command.ExecuteNonQuery();
 
-                        transaction.Complete();
+                        //transaction.Complete();
 
                         using (var reader = command.ExecuteReader())
                             return TranslateBooks(reader);

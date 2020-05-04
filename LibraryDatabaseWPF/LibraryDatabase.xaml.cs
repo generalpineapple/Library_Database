@@ -131,7 +131,9 @@ namespace LibraryDatabaseWPF
         {
             if (DataContext is ViewModel viewModel)
             {
+                viewModel.BookList = new List<Books>(); 
                 viewModel.BookList = viewModel.bookRepository.FetchBooksToReplace().ToList();
+                UpdateList(); 
             }
         }
         
