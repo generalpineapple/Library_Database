@@ -24,6 +24,12 @@ namespace LibraryDatabaseWPF
             this.connectionString = connectionString;
         }
 
+        /// <summary>
+        /// create new Checkout entry
+        /// </summary>
+        /// <param name="bookId"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         public CheckedOut CreateCheckedOut(int bookId, int userId)
         {
 
@@ -46,7 +52,31 @@ namespace LibraryDatabaseWPF
 
                         var transactionId = (int)command.Parameters["TransactionId"].Value;
 
-                        //return new Transaction();
+                        return FetchTransactionById(transactionId);
+                    }
+                }
+            }
+        }
+
+        public CheckedOut FetchTransactionById(int transactionId)
+        {
+            using (var transaction = new TransactionScope())
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    using (var command = new SqlCommand("Library.FetchTransactionById", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("TransactionId", transactionId);
+
+                        connection.Open();
+
+                        command.ExecuteNonQuery();
+
+                        transaction.Complete();
+
+                        using (var reader = command.ExecuteReader())
+                            return TranslateCheckedOut(reader);
                     }
                 }
             }
