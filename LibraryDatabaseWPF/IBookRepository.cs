@@ -12,10 +12,5 @@ namespace LibraryDatabaseWPF
 
         Books CreateBook(string isbn, string authorName, string title, string genreName, string conditionType);
 
-        Books EditBookQuality(int bookId, string conditionType);
-
-        Books TranslateBook(SqlDataReader reader);
-
-
     }
 }

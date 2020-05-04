@@ -17,12 +17,25 @@ namespace LibraryDatabaseWPF
     {
         private readonly string connectionString;
 
+        /// <summary>
+        /// constructor
+        /// </summary>
+        /// <param name="connectionString"></param>
         public SqlBookRepository(string connectionString)
         {
             this.connectionString = connectionString;
         }
 
-        public Authors CreateBook(string isbn, string authorName, string title, string genreName, string conditionType)
+        /// <summary>
+        /// Create a new book 
+        /// </summary>
+        /// <param name="isbn"></param>
+        /// <param name="authorName"></param>
+        /// <param name="title"></param>
+        /// <param name="genreName"></param>
+        /// <param name="conditionType"></param>
+        /// <returns></returns>
+        public Books CreateBook(string isbn, string authorName, string title, string genreName, string conditionType)
         {
             // Verify parameters.
             if (string.IsNullOrWhiteSpace(isbn))
@@ -58,31 +71,33 @@ namespace LibraryDatabaseWPF
                         transaction.Complete();
 
                         var bookId = (int)command.Parameters["BookId"].Value;
+                        int authorId = GetAuthorIdFromName(authorName); 
+                        
 
-
-                        //return new Books(bookId, isbn, authorName, title, genreName, conditionType);
+                        return new Books(bookId, isbn, authorId, title, genreName, conditionType);
                     }
                 }
             }
         }
 
-        public Books EditBookQuality(int bookId, string conditionType)
+        /// <summary>
+        /// Get author id from an author name
+        /// </summary>
+        /// <param name="authorName"></param>
+        /// <returns></returns>
+        private int GetAuthorIdFromName(string authorName)
         {
-            // Verify parameters.
-            if (string.IsNullOrWhiteSpace(conditionType))
-                throw new ArgumentException("The parameter cannot be null or empty.", nameof(conditionType));
+            if (string.IsNullOrWhiteSpace(authorName))
+                throw new ArgumentException("The parameter cannot be null or empty.", nameof(authorName));
 
-
-            // Save to database.
             using (var transaction = new TransactionScope())
             {
                 using (var connection = new SqlConnection(connectionString))
                 {
-                    using (var command = new SqlCommand("Library.CreateAuthor", connection))
+                    using (var command = new SqlCommand("Library.GetAuthorIdFromName", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
-                        command.Parameters.AddWithValue("BookId", bookId);
-                        command.Parameters.AddWithValue("ConditionType", conditionType);
+                        command.Parameters.AddWithValue("AuthorName", authorName);
 
                         connection.Open();
 
@@ -90,17 +105,14 @@ namespace LibraryDatabaseWPF
 
                         transaction.Complete();
 
-                        var bookId = (int)command.Parameters["BookId"].Value;
-
-
-                        //return new Books(bookId, isbn, authorName, title, genreName, conditionType);
+                        using (var reader = command.ExecuteReader())
+                            return reader.GetOrdinal("AuthorId");
                     }
                 }
             }
         }
-    }
 
-        private Books TranslateBook(SqlDataReader reader)
+        private Authors TranslateBook(SqlDataReader reader)
         {
             var authorIdOrdinal = reader.GetOrdinal("AuthorId");
             var nameOrdinal = reader.GetOrdinal("AuthorName");

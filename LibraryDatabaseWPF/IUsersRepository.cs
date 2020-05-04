@@ -11,10 +11,8 @@ namespace LibraryDatabaseWPF
     {
         Users CreateUser(string name, string address, string phoneNumber, string email);
 
-        IList<Users> FetchUsersRentingBookByISBN(int isbn);
+        void EditUserById(int userId, string userName, string userAddress, string phoneNumber, string email);
 
-        IList<Books> GetBooksFromUser(int userId);
-
-        IList<Users> GetTopUsers(); 
+        IReadOnlyList<Users> FetchUserRentingBookByISBN(string isbn);
     }
 }
