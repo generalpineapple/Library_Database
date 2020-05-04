@@ -9,13 +9,16 @@ namespace LibraryDatabaseWPF
 {
     public class BooksVeiwModel
     {
-        public IEnumerable<Books> BookList { get; set; }
+        public IList<Books> BookList { get; set; }
+        public IList<Users> UserList { get; set; }
         public IBookRepository bookRepository;
+        public IUsersRepository usersRepository;
 
-        public BooksVeiwModel(IBookRepository bookRepository)
+        public BooksVeiwModel(IBookRepository bookRepository, IUsersRepository usersRepository)
         {
             this.bookRepository = bookRepository;
-            BookList = bookRepository.RetrieveBooks().AsEnumerable();
+            this.usersRepository = usersRepository;
+            BookList = bookRepository.RetrieveBooks().ToList();
         }
     }
 }
