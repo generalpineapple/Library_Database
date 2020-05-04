@@ -36,7 +36,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -61,6 +63,32 @@
     <Compile Include="AddEditUser.xaml.cs">
       <DependentUpon>AddEditUser.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BooksVeiwModel.cs" />
+    <Compile Include="IAuthorRepository.cs" />
+    <Compile Include="IBookRepository.cs" />
+    <Compile Include="ICheckedOutRepository.cs" />
+    <Compile Include="IConditionRepository.cs" />
+    <Compile Include="IGenresRepository.cs" />
+    <Compile Include="IInventoryRepository.cs" />
+    <Compile Include="IUsersRepository.cs" />
+    <Compile Include="Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Authors.cs" />
+    <Compile Include="Models\Books.cs" />
+    <Compile Include="Models\CheckedOut.cs" />
+    <Compile Include="Models\Condition.cs" />
+    <Compile Include="Models\ConditionType.cs" />
+    <Compile Include="Models\Genres.cs" />
+    <Compile Include="Models\Inventory.cs" />
+    <Compile Include="Models\UserReport.cs" />
+    <Compile Include="Models\Users.cs" />
+    <Compile Include="RecordNotFoundException.cs" />
+    <Compile Include="SqlAuthorRepository.cs" />
+    <Compile Include="SqlBookRepository.cs" />
+    <Compile Include="SqlCheckedOutRepository.cs" />
+    <Compile Include="SqlInventoryRepository.cs" />
+    <Compile Include="SqlUserRepository.cs" />
     <Compile Include="UserDatabase.xaml.cs">
       <DependentUpon>UserDatabase.xaml</DependentUpon>
     </Compile>
@@ -77,6 +105,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LibraryDatabase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -128,6 +160,37 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Procedures\Library.CreateAuthor.sql" />
+    <Content Include="Procedures\Library.CreateBook.sql" />
+    <Content Include="Procedures\Library.CreateCheckedOut.sql" />
+    <Content Include="Procedures\Library.CreateInventory.sql" />
+    <Content Include="Procedures\Library.CreateUser.sql" />
+    <Content Include="Procedures\Library.CreateUserReport.sql" />
+    <Content Include="Procedures\Library.EditBookQuality.sql" />
+    <Content Include="Procedures\Library.EditInventoryByISBN.sql" />
+    <Content Include="Procedures\Library.EditUserById.sql" />
+    <Content Include="Procedures\Library.FetchAllBooks.sql" />
+    <Content Include="Procedures\Library.FetchAllInventory.sql" />
+    <Content Include="Procedures\Library.FetchAllUsers.sql" />
+    <Content Include="Procedures\Library.FetchBookByAuthor.sql" />
+    <Content Include="Procedures\Library.FetchBookByISBN.sql" />
+    <Content Include="Procedures\Library.FetchBookByTitle.sql" />
+    <Content Include="Procedures\Library.FetchBooksToReplace.sql" />
+    <Content Include="Procedures\Library.FetchInventoryByISBN.sql" />
+    <Content Include="Procedures\Library.FetchTransactionById.sql" />
+    <Content Include="Procedures\Library.FetchUsersRentingBookByISBN.sql" />
+    <Content Include="Procedures\Library.GetAuthorIdFromName.sql" />
+    <Content Include="Procedures\Library.GetAuthorNameFromId.sql" />
+    <Content Include="Procedures\Library.GetBookFromId.sql" />
+    <Content Include="Procedures\Library.GetBooksFromUser.sql" />
+    <Content Include="Procedures\Library.GetConditionFromId.sql" />
+    <Content Include="Procedures\Library.GetGenreNameFromId.sql" />
+    <Content Include="Procedures\Library.GetTopBooksByGenre.sql" />
+    <Content Include="Procedures\Library.GetTopUsers.sql" />
+    <Content Include="Procedures\Library.ReturnCheckedOut.sql" />
+    <Content Include="SQL_Data\Full_Data_Script.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

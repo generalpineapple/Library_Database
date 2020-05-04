@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using LibraryDatabaseWPF.Models;
 
 namespace LibraryDatabaseWPF
 {
@@ -22,7 +23,7 @@ namespace LibraryDatabaseWPF
     {
         public LibraryDatabase()
         {
-            InitializeComponent();
+            InitializeComponent();            
         }
 
         private void OnAddBook_Click(object sender, RoutedEventArgs e)
@@ -37,7 +38,33 @@ namespace LibraryDatabaseWPF
 
         private void OnSearch_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: Use linq to filter through the database and desplay results to listbox
+            if (DataContext is BooksVeiwModel viewModel)
+            {
+                if (String.IsNullOrWhiteSpace(uxSearchText.Text))
+                {
+
+                    viewModel.BookList = viewModel.bookRepository.RetrieveBooks().ToList();
+                }
+                else
+                {    
+                    var selectedTag = ((ComboBoxItem)uxSearchBy.SelectedItem).Tag.ToString();
+                    viewModel.BookList.Clear();
+                    switch (selectedTag)
+                    {
+                        case "title":
+                            viewModel.BookList.Add(viewModel.bookRepository.FetchBookByTitle(uxSearchText.Text));
+                            break;
+                        case "author":
+                            IReadOnlyList<Books> books = viewModel.bookRepository.FetchBookByAuthor(uxSearchText.Text);
+                            foreach (Books book in books)
+                                viewModel.BookList.Add(book);
+                            break;
+                        case "isbn":
+                            viewModel.BookList.Add(viewModel.bookRepository.FetchBookFromISBN(uxSearchText.Text));
+                            break;
+                    }
+                }
+            }
         }
 
         private void OnCheckIn_Click(object sender, RoutedEventArgs e)
@@ -53,6 +80,22 @@ namespace LibraryDatabaseWPF
         private void OnDeleteBook_Click(object sender, RoutedEventArgs e)
         {
             //TODO: Delete Selected book from Database
+        }
+
+        private void OnGetTopBooksByGenre_Click(object sender, RoutedEventArgs e)
+        {
+            if(DataContext is BooksVeiwModel viewModel)
+            {
+                viewModel.BookList = viewModel.bookRepository.GetTopBooksByGenre().ToList();
+            }
+        }
+
+        private void OnGetBooksToReplace_Click(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is BooksVeiwModel viewModel)
+            {
+                viewModel.BookList = viewModel.bookRepository.FetchBooksToReplace().ToList();
+            }
         }
     }
 }

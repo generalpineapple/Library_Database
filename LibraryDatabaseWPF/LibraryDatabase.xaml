@@ -9,6 +9,7 @@
       Title="LibraryDatabase">
 
     <Grid>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -17,33 +18,61 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <ListBox Grid.RowSpan="2">
-            <!-- TODO: Intregrate the database with the listbox-->
+        <ListBox Grid.RowSpan="2" Name="uxListBox" ItemsSource="{Binding BookList}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Title: "/>
+                            <TextBlock Text="{Binding Path=Title}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                <TextBlock Text="Genre: "/>
+                                <TextBlock Text="{Binding Path=GenreName}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <TextBlock Text="Author ID: "/>
+                                <TextBlock Text="{Binding Path=AuthorId}"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                <TextBlock Text="Condition: "/>
+                                <TextBlock Text="{Binding Path=ConditionType}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <TextBlock Text="ISBN: "/>
+                                <TextBlock Text="{Binding Path=ISBN}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
-        <StackPanel Grid.Column="1">
+        <StackPanel Grid.Column="1" Grid.RowSpan="2" VerticalAlignment="Top" Margin="10">
             <TextBox   Name="uxSearchText" Margin="10"></TextBox>
             <StackPanel Margin="10" Orientation="Horizontal" Height="35" VerticalAlignment="Top" HorizontalAlignment="Right">
-                <ComboBox IsReadOnly="True">
-                    <RadioButton Content="Key Words"  IsChecked="True"/>
-                    <RadioButton Content="Title"/>
-                    <RadioButton Content="Author"/>
-                    <RadioButton Content="ISBN"/>
-                    <RadioButton Content="Genre"/>
-
+                <ComboBox Name="uxSearchBy">
+                    <ComboBoxItem Tag="title" Content="Title" IsSelected="True"/>
+                    <ComboBoxItem Tag="author" Content="Author"/>
+                    <ComboBoxItem Tag="isbn" Content="ISBN"/>
                 </ComboBox>
                 <Button Click="OnSearch_Click" Margin="10,0,10,0" Width="80">Search</Button>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Height="35" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10">
+            <StackPanel Orientation="Horizontal" Height="35" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10,20,10,10">
                 <Button Click="OnCheckIn_Click" Margin="10,0,10,0.2" Width="100">Check-In Book</Button>
                 <Button Click="OnCheckOut_Click" Margin="10,0,10,0.2" Width="100">Check-Out Book</Button>
             </StackPanel>
-        </StackPanel>
-        <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
-            <StackPanel Orientation="Horizontal" Height="35" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Button Click="OnAddBook_Click" Margin="10,0,15,0.2" Width="120">Add Book</Button>
-                <Button Click="OnEditBook_Click" Margin="15,0,10,0.2" Width="120">Edit Selected Book</Button>
+            <StackPanel Orientation="Horizontal" Height="35" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10">
+                <Button Click="OnAddBook_Click" Margin="10,0,10,0.2" Width="120">Add Book</Button>
+                <Button Click="OnEditBook_Click" Margin="10,0,10,0.2" Width="120">Edit Selected Book</Button>
             </StackPanel>
-            <Button Click="OnDeleteBook_Click" Margin="10,20,10,0.2" Height="35" Width="120">Delete Selected Book</Button>
+            <Button Click="OnDeleteBook_Click" Margin="10" Height="35" Width="120">Delete Selected Book</Button>
+            <StackPanel Orientation="Horizontal" Height="35" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10">
+                <Button Click="OnGetTopBooksByGenre_Click" Margin="10,0,10,0.2" Width="120">Top Books Report</Button>
+                <Button Click="OnGetBooksToReplace_Click" Margin="10,0,10,0.2" Width="120">Replacement Report</Button>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Page>
