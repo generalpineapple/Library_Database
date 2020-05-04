@@ -24,7 +24,6 @@ namespace LibraryDatabaseWPF
         public LibraryDatabase()
         {
             InitializeComponent();
-            this.DataContext = this; 
         }
 
         private void OnAddBook_Click(object sender, RoutedEventArgs e)
