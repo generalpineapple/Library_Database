@@ -4,7 +4,7 @@
 DROP PROCEDURE IF EXISTS [Library].FetchBookByAuthor
 GO
 
-CREATE PROCEDURE [Library].FetchBooksByAuthor
+CREATE PROCEDURE [Library].FetchBookByAuthor
    @Author NVARCHAR(256)
 AS
 
