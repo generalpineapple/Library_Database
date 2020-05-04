@@ -17,8 +17,35 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <ListBox Grid.RowSpan="2">
-            <!-- TODO: Intregrate the database with the listbox-->
+        <ListBox Grid.RowSpan="2" Name="uxListBox" ItemsSource="{Binding UserList}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                <TextBlock Text="Name: "/>
+                                <TextBlock Text="{Binding Path=Name}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <TextBlock Text="User ID: "/>
+                                <TextBlock Text="{Binding Path=UserId}"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Phone Number: "/>
+                            <TextBlock Text="{Binding Path=PhoneNumber}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Email: "/>
+                            <TextBlock Text="{Binding Path=Email}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Late Returns: "/>
+                            <TextBlock Text="{Binding Path=LateReturns}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
         <StackPanel Grid.Column="1" Grid.RowSpan="2">
             <TextBox   Name="uxSearchText" Margin="10"></TextBox>

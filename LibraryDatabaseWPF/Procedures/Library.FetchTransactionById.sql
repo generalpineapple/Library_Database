@@ -8,7 +8,7 @@ CREATE PROCEDURE [Library].FetchTransactionById
 AS
 
 BEGIN TRY
-	SELECT C.BookId, C.UserId, C.CheckoutDate, C.ReturnedDate, 
+	SELECT C.BookId, C.UserId, C.CheckoutDate, C.ReturnedDate 
 	FROM Library.CheckedOut C
 	WHERE C.TransactionId = @TransactionId
 	

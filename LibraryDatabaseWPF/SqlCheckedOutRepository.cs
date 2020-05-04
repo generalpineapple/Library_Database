@@ -129,5 +129,9 @@ namespace LibraryDatabaseWPF
             return checkouts;
         }
 
+        public CheckedOut CreateCheckedOut(int bookId, int userId, DateTime checkoutDate, DateTime returnedDate, DateTime dueDate)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
