@@ -21,25 +21,31 @@ namespace LibraryDatabaseWPF
     /// </summary>
     public partial class AddEditUser : Page
     {
-        private ViewModel view = new ViewModel();
+        //default to -1 as there are no negative keys
         private int userId = -1;
         public AddEditUser()
         {
             InitializeComponent();
-            DataContext = view;
         }
 
+        /// <summary>
+        /// sets all textboxes to the current info of the user
+        /// </summary>
+        /// <param name="users"></param>
         public AddEditUser(Users users)
         {
             userId = users.UserId;
+            uxName.Text = users.Name;
             uxEmail.Text = users.Email;
             uxNumber.Text = users.PhoneNumber;
-            uxName.Text = users.Name;
-            DataContext = view;
             //TODO: add Address
         }
 
-
+        /// <summary>
+        /// disregards any information put in and returns to previous page if possible
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnCancel_Click(object sender, RoutedEventArgs e)
         {
             if (NavigationService.CanGoBack)
@@ -52,10 +58,18 @@ namespace LibraryDatabaseWPF
             }
         }
 
+        /// <summary>
+        /// checks all textboxes are filled then either updates or creates user.
+        /// it then returns you to the previous page.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnConfirm_Click(object sender, RoutedEventArgs e)
         {
             if(DataContext is ViewModel viewModel)
             {
+                //do I need to validate that the information is correct? like numbers and emails?
+                //Remember to delete this comment
                 if (!String.IsNullOrWhiteSpace(uxName.Text) && !String.IsNullOrWhiteSpace(uxAddress.Text) && !String.IsNullOrWhiteSpace(uxNumber.Text) && !String.IsNullOrWhiteSpace(uxEmail.Text)) 
                 {
                     if (userId == -1)

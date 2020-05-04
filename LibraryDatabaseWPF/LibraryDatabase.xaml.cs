@@ -28,17 +28,33 @@ namespace LibraryDatabaseWPF
             DataContext = view;
         }
 
+        /// <summary>
+        /// navigates to the add book page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnAddBook_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new AddEditBook());
         }
 
+        /// <summary>
+        /// navigates to the edit book page with the selected book as its paramiter
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnEditBook_Click(object sender, RoutedEventArgs e)
         {
             if (uxListBox.SelectedItem is Books book)
                 NavigationService.Navigate(new AddEditBook(book));
         }
 
+        /// <summary>
+        /// uses the combo box tag to determine which procedure to activate.
+        /// uses the book repo to activate those procedures
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnSearch_Click(object sender, RoutedEventArgs e)
         {
             if (DataContext is ViewModel viewModel)
@@ -77,6 +93,11 @@ namespace LibraryDatabaseWPF
             //TODO: Update Selected book to have the Checked in status.
         }
 
+        /// <summary>
+        /// navigates to the userdatabase so it can finish the check out procedure
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnCheckOut_Click(object sender, RoutedEventArgs e)
         {
             if(uxListBox.SelectedItem is Books book)
@@ -86,6 +107,11 @@ namespace LibraryDatabaseWPF
 
         }
 
+        /// <summary>
+        /// generates a report quarry through user repo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnGetTopBooksByGenre_Click(object sender, RoutedEventArgs e)
         {
             if(DataContext is ViewModel viewModel)
@@ -96,6 +122,11 @@ namespace LibraryDatabaseWPF
             }
         }
 
+        /// <summary>
+        /// generates a report quarry through user repo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnGetBooksToReplace_Click(object sender, RoutedEventArgs e)
         {
             if (DataContext is ViewModel viewModel)
