@@ -72,7 +72,6 @@
             <RadioButton Margin="7" GroupName="uxGenre" Content="Travel"/>
             <RadioButton Margin="7" GroupName="uxGenre" Content="Gay/Lesbian"/>
             <RadioButton Margin="7" GroupName="uxGenre" Content="Education/Teaching"/>
-            <!-- TODO: Add all genres-->
         </WrapPanel>
         <Button Click="OnCancel_Click" Content="Cancel" Height="50" Width="125" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="25" />
         <Button Click="OnConfirm_Click" Content="Confirm" Height="50" Width="125" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="25" />
