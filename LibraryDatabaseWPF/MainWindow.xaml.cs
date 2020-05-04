@@ -20,7 +20,7 @@ namespace LibraryDatabaseWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly string connectionString;
+        private readonly string connectionString = @"Server=localhost\SQLEXPRESS;Database=master;";
         public MainWindow()
         {
             InitializeComponent();

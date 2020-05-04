@@ -54,11 +54,9 @@
             <TextBox   Name="uxSearchText" Margin="10"></TextBox>
             <StackPanel Margin="10" Orientation="Horizontal" Height="35" VerticalAlignment="Top" HorizontalAlignment="Right">
                 <ComboBox Name="uxSearchBy">
-                    <ComboBoxItem Content="Key Words"  IsSelected="True"/>
-                    <ComboBoxItem Content="Title"/>
-                    <ComboBoxItem Content="Author"/>
-                    <ComboBoxItem Content="ISBN"/>
-                    <ComboBoxItem Content="Genre"/>
+                    <ComboBoxItem Tag="title" Content="Title" IsSelected="True"/>
+                    <ComboBoxItem Tag="author" Content="Author"/>
+                    <ComboBoxItem Tag="isbn" Content="ISBN"/>
                 </ComboBox>
                 <Button Click="OnSearch_Click" Margin="10,0,10,0" Width="80">Search</Button>
             </StackPanel>

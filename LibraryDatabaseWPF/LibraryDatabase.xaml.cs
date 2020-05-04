@@ -21,9 +21,6 @@ namespace LibraryDatabaseWPF
     /// </summary>
     public partial class LibraryDatabase : Page
     {
-        private readonly string connectionString;
-        IEnumerable<Books> booksList;
-
         public LibraryDatabase()
         {
             InitializeComponent();            
@@ -41,7 +38,33 @@ namespace LibraryDatabaseWPF
 
         private void OnSearch_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: Use linq to filter through the database and desplay results to listbox
+            if (DataContext is BooksVeiwModel viewModel)
+            {
+                if (String.IsNullOrWhiteSpace(uxSearchText.Text))
+                {
+
+                    viewModel.BookList = viewModel.bookRepository.RetrieveBooks().ToList();
+                }
+                else
+                {    
+                    var selectedTag = ((ComboBoxItem)uxSearchBy.SelectedItem).Tag.ToString();
+                    viewModel.BookList.Clear();
+                    switch (selectedTag)
+                    {
+                        case "title":
+                            viewModel.BookList.Add(viewModel.bookRepository.FetchBookByTitle(uxSearchText.Text));
+                            break;
+                        case "author":
+                            IReadOnlyList<Books> books = viewModel.bookRepository.FetchBookByAuthor(uxSearchText.Text);
+                            foreach (Books book in books)
+                                viewModel.BookList.Add(book);
+                            break;
+                        case "isbn":
+                            viewModel.BookList.Add(viewModel.bookRepository.FetchBookFromISBN(uxSearchText.Text));
+                            break;
+                    }
+                }
+            }
         }
 
         private void OnCheckIn_Click(object sender, RoutedEventArgs e)
@@ -61,12 +84,18 @@ namespace LibraryDatabaseWPF
 
         private void OnGetTopBooksByGenre_Click(object sender, RoutedEventArgs e)
         {
-            //TODO
+            if(DataContext is BooksVeiwModel viewModel)
+            {
+                viewModel.BookList = viewModel.bookRepository.GetTopBooksByGenre().ToList();
+            }
         }
 
         private void OnGetBooksToReplace_Click(object sender, RoutedEventArgs e)
         {
-            //TODO
+            if (DataContext is BooksVeiwModel viewModel)
+            {
+                viewModel.BookList = viewModel.bookRepository.FetchBooksToReplace().ToList();
+            }
         }
     }
 }
