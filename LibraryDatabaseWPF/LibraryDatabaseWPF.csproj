@@ -170,8 +170,9 @@
     <Content Include="Procedures\Library.FetchBookByTitle.sql" />
     <Content Include="Procedures\Library.FetchBooksToReplace.sql" />
     <Content Include="Procedures\Library.FetchUsersRentingBookByISBN.sql" />
-    <Content Include="Procedures\Library.GetAuthorNameFromId.sql" />
+    <Content Include="Procedures\Library.GetAuthorIdFromName.sql" />
     <Content Include="Procedures\Library.GetBooksFromUser.sql" />
+    <Content Include="Procedures\Library.GetGenreNameFromId.sql" />
     <Content Include="Procedures\Library.GetTopBooksByGenre.sql" />
     <Content Include="Procedures\Library.GetTopUsers.sql" />
     <Content Include="Procedures\Library.ReturnCheckedOut.sql" />

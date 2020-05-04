@@ -1,20 +1,20 @@
-/***Report query #4, returns a list of top 10 users by # of checkouts
+/*** Returns the GenreId associated with the provied Genre name. Throws an error if the Genre can't be found
 ****/
 DROP PROCEDURE IF EXISTS [Library].GetAuthorNameFromId
 GO
 
 CREATE PROCEDURE [Library].GetAuthorNameFromId
-@AuthorId INT
+@GenreId INT
 AS
 
 BEGIN TRY
-	SELECT A.AuthorName
-	FROM Library.Authors
-	WHERE A.AuthorId = @AuthorId
+	SELECT G.GenreName
+	FROM Library.Genres G
+	WHERE G.GenreId = @GenreId
 	
 	IF @@ROWCOUNT = 0
 	BEGIN
-		DECLARE @Message NVARCHAR(256) = FORMATMESSAGE(N'No Author with Id %d exists.', @AuthorId);
+		DECLARE @Message NVARCHAR(256) = FORMATMESSAGE(N'No Genre with Id %d exists.', @AuthorId);
 		THROW 50000, @Message, 1;
 	END;
 END TRY
@@ -22,7 +22,7 @@ BEGIN CATCH
 	DECLARE @ErrorMessage NVARCHAR(1024) =
       N'An error occurred at line ' +
          CAST(ERROR_LINE() AS NVARCHAR(10)) +
-         N' when attempting to find the author: ' +
+         N' when attempting to find the genre: ' +
          ERROR_MESSAGE();
          
    PRINT @ErrorMessage;
