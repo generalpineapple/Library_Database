@@ -35,7 +35,7 @@ namespace LibraryDatabaseWPF
         /// <param name="genreName"></param>
         /// <param name="conditionType"></param>
         /// <returns></returns>
-        public Books CreateBook(string isbn, string authorName, string title, string genreName, string conditionType)
+        public void CreateBook(string isbn, string authorName, string title, string genreName, string conditionType)
         {
             // Verify parameters.
             if (string.IsNullOrWhiteSpace(isbn))
@@ -70,11 +70,11 @@ namespace LibraryDatabaseWPF
 
                         transaction.Complete();
 
-                        var bookId = (int)command.Parameters["BookId"].Value;
-                        int authorId = GetAuthorIdFromName(authorName); 
+                        //var bookId = (int)command.Parameters["BookId"].Value;
+                        //int authorId = GetAuthorIdFromName(authorName); 
                         
 
-                        return new Books(bookId, isbn, authorName, title, genreName, conditionType);
+                        //return new Books(bookId, isbn, authorName, title, genreName, conditionType);
                     }
                 }
             }
@@ -92,9 +92,9 @@ namespace LibraryDatabaseWPF
 
                         connection.Open();
 
-                        command.ExecuteNonQuery();
+                        //command.ExecuteNonQuery();
 
-                        transaction.Complete();
+                        //transaction.Complete();
 
                         using (var reader = command.ExecuteReader())
                             return TranslateBooks(reader);
@@ -109,7 +109,7 @@ namespace LibraryDatabaseWPF
         /// <param name="bookId"></param>
         /// <param name="conditionId"></param>
         /// <returns></returns>
-        public Books EditBookQuality(int bookId, int conditionId)
+        public void EditBookQuality(int bookId, int conditionId)
         {
             Books book = GetBookFromId(bookId);
 
@@ -129,6 +129,7 @@ namespace LibraryDatabaseWPF
 
                         transaction.Complete();
 
+                        /*
                         return new Books(
                             bookId, 
                             book.ISBN, 
@@ -136,6 +137,7 @@ namespace LibraryDatabaseWPF
                             book.Title, 
                             book.GenreName, 
                             GetConditionNameFromId(conditionId));
+                            */
                     }
                 }
             }

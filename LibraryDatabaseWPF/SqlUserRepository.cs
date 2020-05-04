@@ -28,7 +28,7 @@ namespace LibraryDatabaseWPF
         /// <param name="phoneNumber"></param>
         /// <param name="email"></param>
         /// <returns></returns>
-        public Users CreateUser(string userName, string userAddress, string phoneNumber, string email)
+        public void CreateUser(string userName, string userAddress, string phoneNumber, string email)
         {
             // Verify parameters.
             if (string.IsNullOrWhiteSpace(userName))
@@ -61,9 +61,9 @@ namespace LibraryDatabaseWPF
 
                         transaction.Complete();
 
-                        var userId = (int)command.Parameters["UserId"].Value;
+                        //var userId = (int)command.Parameters["UserId"].Value;
 
-                        return new Users(userId, userName, 0, phoneNumber, email, 0);
+                        //return new Users(userId, userName, 0, phoneNumber, email, 0);
                     }
                 }
             }
@@ -81,9 +81,9 @@ namespace LibraryDatabaseWPF
 
                         connection.Open();
 
-                        command.ExecuteNonQuery();
+                        //command.ExecuteNonQuery();
 
-                        transaction.Complete();
+                        //transaction.Complete();
 
                         using (var reader = command.ExecuteReader())
                             return TranslateUsers(reader);
@@ -157,9 +157,9 @@ namespace LibraryDatabaseWPF
 
                         connection.Open();
 
-                        command.ExecuteNonQuery();
+                        //command.ExecuteNonQuery();
 
-                        transaction.Complete();
+                        //transaction.Complete();
 
                         using (var reader = command.ExecuteReader())
                             return TranslateUsers(reader);
@@ -185,9 +185,9 @@ namespace LibraryDatabaseWPF
 
                         connection.Open();
 
-                        command.ExecuteNonQuery();
+                        //command.ExecuteNonQuery();
 
-                        transaction.Complete();
+                       // transaction.Complete();
 
                         using (var reader = command.ExecuteReader())
                             return TranslateUsers(reader);
@@ -210,9 +210,9 @@ namespace LibraryDatabaseWPF
 
                         connection.Open();
 
-                        command.ExecuteNonQuery();
+                        //command.ExecuteNonQuery();
 
-                        transaction.Complete();
+                        //transaction.Complete();
 
                         using (var reader = command.ExecuteReader())
                             return TranslateUserReport(reader);

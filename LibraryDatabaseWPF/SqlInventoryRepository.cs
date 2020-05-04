@@ -20,7 +20,7 @@ namespace LibraryDatabaseWPF
             this.connectionString = connectionString;
         }
 
-        public Inventory CreateInventory(string isbn)
+        public void CreateInventory(string isbn)
         {
             if (string.IsNullOrWhiteSpace(isbn))
                 throw new ArgumentException("The parameter cannot be null or empty.", nameof(isbn));

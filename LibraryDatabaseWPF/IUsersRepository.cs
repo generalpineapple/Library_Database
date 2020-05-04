@@ -9,7 +9,7 @@ namespace LibraryDatabaseWPF
 {
     public interface IUsersRepository
     {
-        Users CreateUser(string name, string address, string phoneNumber, string email);
+        void CreateUser(string name, string address, string phoneNumber, string email);
 
         void EditUserById(int userId, string userName, string userAddress, string phoneNumber, string email);
 

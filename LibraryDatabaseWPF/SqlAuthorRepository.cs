@@ -19,7 +19,7 @@ namespace LibraryDatabaseWPF
             this.connectionString = connectionString;
         }
 
-        public Authors CreateAuthor(string authorName)
+        public void CreateAuthor(string authorName)
         {
             // Verify parameters.
             if (string.IsNullOrWhiteSpace(authorName))
@@ -41,9 +41,9 @@ namespace LibraryDatabaseWPF
 
                         transaction.Complete();
 
-                        var authorId = (int)command.Parameters["AuthorId"].Value;
+                        //var authorId = (int)command.Parameters["AuthorId"].Value;
 
-                        return new Authors(authorId, authorName);
+                        //return new Authors(authorId, authorName);
                     }
                 }
             }

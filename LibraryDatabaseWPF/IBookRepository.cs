@@ -10,11 +10,11 @@ namespace LibraryDatabaseWPF
     public interface IBookRepository
     {
 
-        Books CreateBook(string isbn, string authorName, string title, string genreName, string conditionType);
+        void CreateBook(string isbn, string authorName, string title, string genreName, string conditionType);
 
         IReadOnlyList<Books> FetchBookByAuthor(string authorName);
 
-        Books EditBookQuality(int bookId, int conditionId);
+        void EditBookQuality(int bookId, int conditionId);
 
         IReadOnlyList<Books> FetchAllBooks();
 
