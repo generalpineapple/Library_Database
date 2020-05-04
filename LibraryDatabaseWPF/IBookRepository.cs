@@ -38,6 +38,6 @@ namespace LibraryDatabaseWPF
         /// <returns>
         /// The resulting instance of <see cref="Person"/>.
         /// </returns>
-        Books CreateBook(int bookId, string isbn, int authorId, string title, string genreName, string conditionType);
+        Books CreateBook(string isbn, string authorName, string title, string genreName, string conditionType);
     }
 }
