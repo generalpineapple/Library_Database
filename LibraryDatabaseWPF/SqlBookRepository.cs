@@ -37,7 +37,6 @@ namespace LibraryDatabaseWPF
                 throw new ArgumentException("The parameter cannot be null or empty.", nameof(conditionType));
 
 
-
             // Save to database.
             using (var transaction = new TransactionScope())
             {
@@ -67,48 +66,41 @@ namespace LibraryDatabaseWPF
             }
         }
 
-        public Authors FetchAuthor(int authorId)
+        public Books EditBookQuality(int bookId, string conditionType)
         {
-            using (var connection = new SqlConnection(connectionString))
+            // Verify parameters.
+            if (string.IsNullOrWhiteSpace(conditionType))
+                throw new ArgumentException("The parameter cannot be null or empty.", nameof(conditionType));
+
+
+            // Save to database.
+            using (var transaction = new TransactionScope())
             {
-                using (var command = new SqlCommand("Person.FetchPerson", connection))
+                using (var connection = new SqlConnection(connectionString))
                 {
-                    command.CommandType = CommandType.StoredProcedure;
-
-                    command.Parameters.AddWithValue("AUthorId", authorId);
-
-                    connection.Open();
-
-                    using (var reader = command.ExecuteReader())
+                    using (var command = new SqlCommand("Library.CreateAuthor", connection))
                     {
-                        var author = TranslateAuthor(reader);
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("BookId", bookId);
+                        command.Parameters.AddWithValue("ConditionType", conditionType);
 
-                        if (author == null)
-                            throw new RecordNotFoundException(authorId.ToString());
+                        connection.Open();
 
-                        return author;
+                        command.ExecuteNonQuery();
+
+                        transaction.Complete();
+
+                        var bookId = (int)command.Parameters["BookId"].Value;
+
+
+                        //return new Books(bookId, isbn, authorName, title, genreName, conditionType);
                     }
                 }
             }
         }
+    }
 
-        public IReadOnlyList<Authors> RetrieveAuthors()
-        {
-            using (var connection = new SqlConnection(connectionString))
-            {
-                using (var command = new SqlCommand("Person.RetrievePersons", connection))
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-
-                    connection.Open();
-
-                    using (var reader = command.ExecuteReader())
-                        return TranslateAuthors(reader);
-                }
-            }
-        }
-
-        private Authors TranslateAuthor(SqlDataReader reader)
+        private Books TranslateBook(SqlDataReader reader)
         {
             var authorIdOrdinal = reader.GetOrdinal("AuthorId");
             var nameOrdinal = reader.GetOrdinal("AuthorName");

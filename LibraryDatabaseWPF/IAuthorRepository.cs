@@ -21,26 +21,6 @@ namespace LibraryDatabaseWPF
         /// </returns>
         Authors CreateAuthor(string name);
 
-        /*
-        /// <summary>
-        /// Retrieves all persons in the database.
-        /// </summary>
-        /// <returns>
-        /// <see cref="IReadOnlyList{Person}"/> containing all persons.
-        /// </returns>
-        IReadOnlyList<Authors> RetrieveAuthors();
-
-        /// <summary>
-        /// Fetches the person with the given <paramref name="personId"/> if it exists.
-        /// </summary>
-        /// <param name="personId">Identifier of the person to fetch.</param>
-        /// <returns>
-        /// An instance of <see cref="Person"/> containing the information of the requested person.
-        /// </returns>
-        /// <exception cref="DataAccess.RecordNotFoundException">
-        /// Thrown if <paramref name="personId"/> does not exist.
-        /// </exception>
-        Authors FetchAuthor(int authorId);
-        */
+        int GetAuthorNameFromId(string name);
     }
 }
