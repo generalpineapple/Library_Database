@@ -40,38 +40,38 @@
 
         <WrapPanel Grid.Column="1" Margin="0">
             <Label Margin="0" Height="27" >Genre:</Label>
-            <RadioButton Margin="7"  GroupName="uxGenre" Content="Arts/Photography"/>
-            <RadioButton Margin="7" GroupName="uxGenre" Content="Biographies/Memoirs"/>
-            <RadioButton Margin="7" GroupName="uxGenre" Content="Business/Money"/>
-            <RadioButton Margin="7" GroupName="uxGenre" Content="Calendars"/>
-            <RadioButton Margin="7" GroupName="uxGenre" Content="Childrens Books"/>
-            <RadioButton Margin="7" GroupName="uxGenre" Content="Comics/Graphic Novels"/>
-            <RadioButton Margin="7" GroupName="uxGenre" Content="Computers/Technology"/>
-            <RadioButton Margin="7" GroupName="uxGenre" Content="Cookbooks, Food/Wine"/>
-            <RadioButton Margin="7" GroupName="uxGenre" Content="Crafts, Hobbies/Home"/>
-            <RadioButton Margin="7" GroupName="uxGenre" Content="Christian Books/Bibles"/>
-            <RadioButton Margin="7" GroupName="uxGenre" Content="Engineering/Transportation"/>
-            <RadioButton Margin="7" GroupName="uxGenre" Content="Health, Fitness/Dieting"/>
-            <RadioButton Margin="7" GroupName="uxGenre" Content="History"/>
-            <RadioButton Margin="7" GroupName="uxGenre" Content="Law"/>
-            <RadioButton Margin="7" GroupName="uxGenre" Content="Humor/Entertainment"/>
-            <RadioButton Margin="7" GroupName="uxGenre" Content="Literature/Fiction"/>
-            <RadioButton Margin="7" GroupName="uxGenre" Content="Medical Books"/>
-            <RadioButton Margin="7" GroupName="uxGenre" Content="Mystery, Thriller/Suspense"/>
-            <RadioButton Margin="7" GroupName="uxGenre" Content="Parenting/Relationships"/>
-            <RadioButton Margin="7" GroupName="uxGenre" Content="Politics"/>
-            <RadioButton Margin="7" GroupName="uxGenre" Content="Reference"/>
-            <RadioButton Margin="7" GroupName="uxGenre" Content="Religion/Spirituality"/>
-            <RadioButton Margin="7" GroupName="uxGenre" Content="Romance"/>
-            <RadioButton Margin="7" GroupName="uxGenre" Content="Science/Math"/>
-            <RadioButton Margin="7" GroupName="uxGenre" Content="Science Fiction/Fantasy"/>
-            <RadioButton Margin="7" GroupName="uxGenre" Content="Self-Help"/>
-            <RadioButton Margin="7" GroupName="uxGenre" Content="Sports/Outdoors"/>
-            <RadioButton Margin="7" GroupName="uxGenre" Content="Teen/Young Adult"/>
-            <RadioButton Margin="7" GroupName="uxGenre" Content="Test Preparation"/>
-            <RadioButton Margin="7" GroupName="uxGenre" Content="Travel"/>
-            <RadioButton Margin="7" GroupName="uxGenre" Content="Gay/Lesbian"/>
-            <RadioButton Margin="7" GroupName="uxGenre" Content="Education/Teaching"/>
+            <RadioButton Margin="7" Name="G0"  GroupName="uxGenre" Content="Arts/Photography" Tag="Arts &amp; Photography"/>
+            <RadioButton Margin="7" Name="G1" GroupName="uxGenre" Content="Biographies/Memoirs" Tag="Biographies &amp; Memoirs"/>
+            <RadioButton Margin="7" Name="G2" GroupName="uxGenre" Content="Business/Money" Tag="Business &amp; Money"/>
+            <RadioButton Margin="7" Name="G3" GroupName="uxGenre" Content="Calendars" Tag="Calendars"/>
+            <RadioButton Margin="7" Name="G4" GroupName="uxGenre" Content="Childrens Books" Tag="Childrens Books"/>
+            <RadioButton Margin="7" Name="G5" GroupName="uxGenre" Content="Comics/Graphic Novels" Tag="Comics &amp; Graphic Novels"/>
+            <RadioButton Margin="7" Name="G6" GroupName="uxGenre" Content="Computers/Technology" Tag="Computers &amp; Technology"/>
+            <RadioButton Margin="7" Name="G7" GroupName="uxGenre" Content="Cookbooks, Food/Wine" Tag="Cookbooks, Food &amp; Wine"/>
+            <RadioButton Margin="7" Name="G8" GroupName="uxGenre" Content="Crafts, Hobbies/Home" Tag="Crafts, Hobbies &amp; Home"/>
+            <RadioButton Margin="7" Name="G9" GroupName="uxGenre" Content="Christian Books/Bibles" Tag="Christian Books &amp; Bibles"/>
+            <RadioButton Margin="7" Name="G10" GroupName="uxGenre" Content="Engineering/Transportation" Tag="Engineering &amp; Transportation"/>
+            <RadioButton Margin="7" Name="G11" GroupName="uxGenre" Content="Health, Fitness/Dieting" Tag="Health, Fitness &amp; Dieting"/>
+            <RadioButton Margin="7" Name="G12" GroupName="uxGenre" Content="History" Tag="History"/>
+            <RadioButton Margin="7" Name="G13" GroupName="uxGenre" Content="Law" Tag="Law"/>
+            <RadioButton Margin="7" Name="G14" GroupName="uxGenre" Content="Humor/Entertainment" Tag="Humor &amp; Entertainment"/>
+            <RadioButton Margin="7" Name="G15" GroupName="uxGenre" Content="Literature/Fiction" Tag="Literature &amp; Fiction"/>
+            <RadioButton Margin="7" Name="G16" GroupName="uxGenre" Content="Medical Books" Tag="Medical Books"/>
+            <RadioButton Margin="7" Name="G17" GroupName="uxGenre" Content="Mystery, Thriller/Suspense" Tag="Mystery, Thriller &amp; Suspense"/>
+            <RadioButton Margin="7" Name="G18" GroupName="uxGenre" Content="Parenting/Relationships" Tag="Parenting &amp; Relationships"/>
+            <RadioButton Margin="7" Name="G19" GroupName="uxGenre" Content="Politics" Tag="Politics &amp; Social Sciences"/>
+            <RadioButton Margin="7" Name="G20" GroupName="uxGenre" Content="Reference" Tag="Reference"/>
+            <RadioButton Margin="7" Name="G21" GroupName="uxGenre" Content="Religion/Spirituality" Tag="Religion &amp; Spirituality"/>
+            <RadioButton Margin="7" Name="G22" GroupName="uxGenre" Content="Romance" Tag="Romance"/>
+            <RadioButton Margin="7" Name="G23" GroupName="uxGenre" Content="Science/Math" Tag="Science &amp; Math"/>
+            <RadioButton Margin="7" Name="G24" GroupName="uxGenre" Content="Science Fiction/Fantasy" Tag="Science Fiction &amp; Fantasy"/>
+            <RadioButton Margin="7" Name="G25" GroupName="uxGenre" Content="Self-Help" Tag="Self-Help"/>
+            <RadioButton Margin="7" Name="G26" GroupName="uxGenre" Content="Sports/Outdoors" Tag="Sports &amp; Outdoors"/>
+            <RadioButton Margin="7" Name="G27" GroupName="uxGenre" Content="Teen/Young Adult" Tag="Teen &amp; Young Adult"/>
+            <RadioButton Margin="7" Name="G28" GroupName="uxGenre" Content="Test Preparation" Tag="Test Preparation"/>
+            <RadioButton Margin="7" Name="G29" GroupName="uxGenre" Content="Travel" Tag="Travel"/>
+            <RadioButton Margin="7" Name="G30" GroupName="uxGenre" Content="Gay/Lesbian" Tag="Gay &amp; Lesbian"/>
+            <RadioButton Margin="7" Name="G31" GroupName="uxGenre" Content="Education/Teaching" Tag="Education &amp; Teaching"/>
         </WrapPanel>
         <Button Click="OnCancel_Click" Content="Cancel" Height="50" Width="125" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="25" />
         <Button Click="OnConfirm_Click" Content="Confirm" Height="50" Width="125" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="25" />

@@ -33,7 +33,8 @@ namespace LibraryDatabaseWPF
 
         private void OnEditBook_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: navigate to AddEditBook with selected book as a parameter
+            if (uxListBox.SelectedItem is Books book)
+                NavigationService.Navigate(new AddEditBook(book));
         }
 
         private void OnSearch_Click(object sender, RoutedEventArgs e)
