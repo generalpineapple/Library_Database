@@ -196,6 +196,53 @@ namespace LibraryDatabaseWPF
             }
         }
 
+        public UserReport CreateUserReport(userName)
+        {
+            // Save to database.
+            using (var transaction = new TransactionScope())
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    using (var command = new SqlCommand("Library.CreateUserReport", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("UserName", userName);
+
+                        connection.Open();
+
+                        command.ExecuteNonQuery();
+
+                        transaction.Complete();
+
+                        using (var reader = command.ExecuteReader())
+                            return TranslateUserReport(reader);
+                    }
+                }
+            }
+        }
+        private UserReport TranslateUserReport(SqlDataReader reader)
+        {
+            //public UserReport(int currentCheckouts, int onTimeReturns, int lateReturns, int overDueBooks, int daysLate)
+
+            var userIdOrdinal = reader.GetOrdinal("UserId");
+            var currentCheckoutsOrdinal = reader.GetOrdinal("CurrentCheckOuts");
+            var onTimeReturnsOrdinal = reader.GetOrdinal("OnTimeReturns");
+            var lateReturnsOrdinal = reader.GetOrdinal("LateReturns");
+            var overDueBooksOrdinal = reader.GetOrdinal("OverdueBooks");
+            var daysLateOrdinal = reader.GetOrdinal("DaysLate");
+
+            if (!reader.Read())
+                return null;
+
+            return new UserReport(
+               reader.GetInt32(userIdOrdinal),
+               reader.GetInt32(currentCheckoutsOrdinal),
+               reader.GetInt32(onTimeReturnsOrdinal),
+               reader.GetInt32(lateReturnsOrdinal),
+               reader.GetInt32(overDueBooksOrdinal),
+               reader.GetInt32(daysLateOrdinal));
+        }
+
         private Users TranslateUser(SqlDataReader reader)
         {
             var userIdOrdinal = reader.GetOrdinal("UserId");

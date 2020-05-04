@@ -81,6 +81,7 @@
     <Compile Include="Models\ConditionType.cs" />
     <Compile Include="Models\Genres.cs" />
     <Compile Include="Models\Inventory.cs" />
+    <Compile Include="Models\UserReport.cs" />
     <Compile Include="Models\Users.cs" />
     <Compile Include="RecordNotFoundException.cs" />
     <Compile Include="SqlAuthorRepository.cs" />
