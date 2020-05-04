@@ -44,5 +44,15 @@ namespace LibraryDatabaseWPF
         {
             //TODO: Use Linq to filter users and display result to listbox
         }
+
+        private void OnGetTopUsers_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO
+        }
+
+        private void OnGetUserReport_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO
+        }
     }
 }
