@@ -88,7 +88,7 @@ namespace LibraryDatabaseWPF
         /// <returns></returns>
         public Books EditBookQuality(int bookId, int conditionId)
         {
-            Books book = GetBooksFromId(bookId);
+            Books book = GetBookFromId(bookId);
 
             using (var transaction = new TransactionScope())
             {
