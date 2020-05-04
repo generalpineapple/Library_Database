@@ -49,35 +49,6 @@ namespace LibraryDatabaseWPF
             }
         }
 
-        int GetAuthorNameFromId(string authorName)
-        {
-            // Verify parameters.
-            if (string.IsNullOrWhiteSpace(authorName))
-                throw new ArgumentException("The parameter cannot be null or empty.", nameof(authorName));
-
-            // Save to database.
-            using (var transaction = new TransactionScope())
-            {
-                using (var connection = new SqlConnection(connectionString))
-                {
-                    using (var command = new SqlCommand("Library.GetAuthorNameFromId", connection))
-                    {
-                        command.CommandType = CommandType.StoredProcedure;
-                        command.Parameters.AddWithValue("AuthorName", authorName);
-
-                        connection.Open();
-
-                        command.ExecuteNonQuery();
-
-                        transaction.Complete();
-
-                        var authorId = (int)command.Parameters["AuthorId"].Value;
-
-                        return authorId;
-                    }
-                }
-            }
-        }
         /*
         private Authors TranslateAuthor(SqlDataReader reader)
         {

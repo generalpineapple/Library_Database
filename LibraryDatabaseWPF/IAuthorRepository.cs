@@ -21,6 +21,5 @@ namespace LibraryDatabaseWPF
         /// </returns>
         Authors CreateAuthor(string name);
 
-        int GetAuthorNameFromId(string name);
     }
 }

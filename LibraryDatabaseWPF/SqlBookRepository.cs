@@ -111,35 +111,146 @@ namespace LibraryDatabaseWPF
                 }
             }
         }
-
-        private Authors TranslateBook(SqlDataReader reader)
+        
+        private string GetAuthorNameFromId(int authorId)
         {
+            using (var transaction = new TransactionScope())
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    using (var command = new SqlCommand("Library.GetAuthorNameFromId", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("AuthorId", authorId);
+
+                        connection.Open();
+
+                        command.ExecuteNonQuery();
+
+                        transaction.Complete();
+
+                        using (var reader = command.ExecuteReader())
+                        {
+                            var authorName = reader.GetOrdinal("AuthorName");
+                            return reader.GetString(authorName);
+                        }
+
+                    }
+                }
+            }
+        }
+
+        private string GetGenreNameFromId(int genreId)
+        {
+            using (var transaction = new TransactionScope())
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    using (var command = new SqlCommand("Library.GetGenreNameFromId", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("GenreId", genreId);
+
+                        connection.Open();
+
+                        command.ExecuteNonQuery();
+
+                        transaction.Complete();
+
+                        using (var reader = command.ExecuteReader())
+                        {
+                            var genreName = reader.GetOrdinal("GenreName");
+                            return reader.GetString(genreName);
+                        }
+                    }
+                }
+            }
+        }
+
+        private string GetConditionNameFromId(int conditionId)
+        {
+            using (var transaction = new TransactionScope())
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    using (var command = new SqlCommand("Library.GetConditionTypeFromId", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("ConditionID", conditionId);
+
+                        connection.Open();
+
+                        command.ExecuteNonQuery();
+
+                        transaction.Complete();
+
+                        using (var reader = command.ExecuteReader())
+                        {
+                            var conditionType = reader.GetOrdinal("ConditionType");
+                            return reader.GetString(conditionType);
+                        }
+                    }
+                }
+            }
+        }
+
+        private Books TranslateBook(SqlDataReader reader)
+        {
+            var bookIdOrdinal = reader.GetOrdinal("BookId");
+            var isbnOrdinal = reader.GetOrdinal("ISBN");
             var authorIdOrdinal = reader.GetOrdinal("AuthorId");
-            var nameOrdinal = reader.GetOrdinal("AuthorName");
+            var titleOrdinal = reader.GetOrdinal("Title");
+            var genreIdOrdinal = reader.GetOrdinal("GenreId");
+            var conditionIdOrdinal = reader.GetOrdinal("ConditionId");
+
+            string authorName = GetAuthorNameFromId(reader.GetInt32(authorIdOrdinal));
+            string genreName = GetGenreNameFromId(reader.GetInt32(genreIdOrdinal));
+            string conditionType = GetGenreNameFromId(reader.GetInt32(conditionIdOrdinal));
+
 
             if (!reader.Read())
                 return null;
 
-            return new Authors(
-               reader.GetInt32(authorIdOrdinal),
-               reader.GetString(nameOrdinal));
+            return new Books(
+               reader.GetInt32(bookIdOrdinal),
+               reader.GetString(isbnOrdinal),
+               authorName,
+               reader.GetString(titleOrdinal),
+               genreName,
+               conditionType);
         }
 
-        private IReadOnlyList<Authors> TranslateAuthors(SqlDataReader reader)
+        private IReadOnlyList<Books> TranslateAuthors(SqlDataReader reader)
         {
-            var authors = new List<Authors>();
+            var books = new List<Books>();
 
+            var bookIdOrdinal = reader.GetOrdinal("BookId");
+            var isbnOrdinal = reader.GetOrdinal("ISBN");
             var authorIdOrdinal = reader.GetOrdinal("AuthorId");
-            var nameOrdinal = reader.GetOrdinal("AuthorName");
+            var titleOrdinal = reader.GetOrdinal("Title");
+            var genreIdOrdinal = reader.GetOrdinal("GenreId");
+            var conditionIdOrdinal = reader.GetOrdinal("ConditionId");
+
+            string authorName = GetAuthorNameFromId(reader.GetInt32(authorIdOrdinal));
+            string genreName = GetGenreNameFromId(reader.GetInt32(genreIdOrdinal));
+            string conditionType = GetGenreNameFromId(reader.GetInt32(conditionIdOrdinal));
+
+
+            if (!reader.Read())
+                return null; 
 
             while (reader.Read())
             {
-                authors.Add(new Authors(
-                   reader.GetInt32(authorIdOrdinal),
-                   reader.GetString(nameOrdinal)));
+                books.Add(new Books(
+                    reader.GetInt32(bookIdOrdinal),
+                    reader.GetString(isbnOrdinal),
+                    authorName,
+                    reader.GetString(titleOrdinal),
+                    genreName,
+                    conditionType));
             }
 
-            return authors;
+            return books;
         }
     }
 }
