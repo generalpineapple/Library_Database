@@ -1,22 +1,23 @@
 /**************************************
- * Procedure to fetch books by a given ISBN
+ * Procedure to fetch books by a given author
  **************************************/
-DROP PROCEDURE IF EXISTS [Library].FetchBookByISBN
+DROP PROCEDURE IF EXISTS [Library].FetchBookByAuthor
 GO
 
-CREATE PROCEDURE [Library].FetchBooksByISBN
-   @ISBN INT
+CREATE PROCEDURE [Library].FetchBooksByAuthor
+   @Author NVARCHAR(256)
 AS
 
 BEGIN TRY
-    SELECT B.BookId, B.AuthorId, B.Title, B.GenreId, B.ConditionId
+    SELECT B.BookId, B.ISBN, B.Title, B.GenreName, B.ConditionType 
     FROM [Library].Books B
-    WHERE B.ISBN = @ISBN
+    INNER JOIN [Library].Authors A ON B.AuthorId = A.AuthorId
+    WHERE A.AuthorName = @Author
     ORDER BY B.Title ASC;
 
     IF @@ROWCOUNT = 0
 	BEGIN
-		DECLARE @Message NVARCHAR(256) = FORMATMESSAGE(N'No books from ISBN %d exists.', @ISBN);
+		DECLARE @Message NVARCHAR(256) = FORMATMESSAGE(N'No books from author id %d exists.', @AuthorId);
 		THROW 50000, @Message, 1;
 	END;
 END TRY
