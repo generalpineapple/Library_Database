@@ -23,13 +23,12 @@
         <StackPanel Grid.Column="1" Grid.RowSpan="2" VerticalAlignment="Top" Margin="10">
             <TextBox   Name="uxSearchText" Margin="10"></TextBox>
             <StackPanel Margin="10" Orientation="Horizontal" Height="35" VerticalAlignment="Top" HorizontalAlignment="Right">
-                <ComboBox IsReadOnly="True">
-                    <RadioButton Content="Key Words"  IsChecked="True"/>
-                    <RadioButton Content="Title"/>
-                    <RadioButton Content="Author"/>
-                    <RadioButton Content="ISBN"/>
-                    <RadioButton Content="Genre"/>
-
+                <ComboBox Name="uxSearchBy">
+                    <ComboBoxItem Content="Key Words"  IsSelected="True"/>
+                    <ComboBoxItem Content="Title"/>
+                    <ComboBoxItem Content="Author"/>
+                    <ComboBoxItem Content="ISBN"/>
+                    <ComboBoxItem Content="Genre"/>
                 </ComboBox>
                 <Button Click="OnSearch_Click" Margin="10,0,10,0" Width="80">Search</Button>
             </StackPanel>
