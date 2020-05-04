@@ -84,6 +84,7 @@ namespace LibraryDatabaseWPF
                                 viewModel.UserList = viewModel.UserList.Where(user => user.UserId == x).ToList();
                             break;
                     }
+                    UpdateList();
                 }
             }
         }
@@ -93,6 +94,8 @@ namespace LibraryDatabaseWPF
             if (DataContext is ViewModel viewModel)
             {
                 viewModel.UserList = viewModel.usersRepository.GetTopUsers().ToList();
+                UpdateList();
+
             }
         }
 
@@ -104,6 +107,8 @@ namespace LibraryDatabaseWPF
                 {
                     UserReport userReport = viewModel.usersRepository.CreateUserReport(user.Name);
                     UserReportWindow userReportWindow = new UserReportWindow(userReport);
+                    UpdateList();
+
                 }
             }
 
@@ -118,6 +123,14 @@ namespace LibraryDatabaseWPF
                     viewModel.checkedOutRepository.CreateCheckedOut(book.BookId, user.UserId);
                     NavigationService.Navigate(new ChooseDatabase());
                 }
+            }
+        }
+
+        private void UpdateList()
+        {
+            if (DataContext is ViewModel viewModel)
+            {
+                uxListBox.ItemsSource = viewModel.UserList;
             }
         }
     }
