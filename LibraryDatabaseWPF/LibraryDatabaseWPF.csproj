@@ -175,6 +175,7 @@
     <Content Include="Procedures\Library.GetAuthorNameFromId.sql" />
     <Content Include="Procedures\Library.GetBookFromId.sql" />
     <Content Include="Procedures\Library.GetBooksFromUser.sql" />
+    <Content Include="Procedures\Library.GetConditionFromId.sql" />
     <Content Include="Procedures\Library.GetGenreNameFromId.sql" />
     <Content Include="Procedures\Library.GetTopBooksByGenre.sql" />
     <Content Include="Procedures\Library.GetTopUsers.sql" />
