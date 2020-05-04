@@ -42,17 +42,48 @@ namespace LibraryDatabaseWPF
 
         private void OnSearch_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: Use Linq to filter users and display result to listbox
+            if(DataContext is ViewModel viewModel)
+            {
+                viewModel.UserList = viewModel.usersRepository.FetchAllUsers().ToList();
+                if (!String.IsNullOrWhiteSpace(uxSearchText.Text))
+                {
+                    var selectedTag = ((ComboBoxItem)uxSearchBy.SelectedItem).Tag.ToString();
+                    switch (selectedTag)
+                    {
+                        case "name":
+                            viewModel.UserList = viewModel.UserList.Where(user => user.Name.Contains(uxSearchText.Text)).ToList();
+                            break;
+                        case "phone":
+                            viewModel.UserList = viewModel.UserList.Where(user => user.PhoneNumber.Contains(uxSearchText.Text)).ToList();
+                            break;
+                        case "email":
+                            viewModel.UserList = viewModel.UserList.Where(user => user.Email.Contains(uxSearchText.Text)).ToList();
+                            break;
+                        case "id":
+                            int x;
+                            if(Int32.TryParse(uxSearchText.Text, out x))
+                                viewModel.UserList = viewModel.UserList.Where(user => user.UserId == x).ToList();
+                            break;
+                    }
+                }
+            }
         }
 
         private void OnGetTopUsers_Click(object sender, RoutedEventArgs e)
         {
-            //TODO
+            if (DataContext is ViewModel viewModel)
+            {
+                viewModel.UserList = viewModel.usersRepository.GetTopUsers().ToList();
+            }
         }
 
         private void OnGetUserReport_Click(object sender, RoutedEventArgs e)
         {
-            //TODO
+            if (DataContext is ViewModel viewModel) 
+            { 
+               
+            }
+
         }
     }
 }

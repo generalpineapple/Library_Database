@@ -7,18 +7,19 @@ using LibraryDatabaseWPF.Models;
 
 namespace LibraryDatabaseWPF
 {
-    public class BooksVeiwModel
+    public class ViewModel
     {
         public IList<Books> BookList { get; set; }
         public IList<Users> UserList { get; set; }
         public IBookRepository bookRepository;
         public IUsersRepository usersRepository;
 
-        public BooksVeiwModel(IBookRepository bookRepository, IUsersRepository usersRepository)
+        public ViewModel(IBookRepository bookRepository, IUsersRepository usersRepository)
         {
             this.bookRepository = bookRepository;
             this.usersRepository = usersRepository;
-            BookList = bookRepository.RetrieveBooks().ToList();
+            BookList = bookRepository.FetchAllBooks().ToList();
+            UserList = usersRepository.FetchAllUsers().ToList();
         }
     }
 }

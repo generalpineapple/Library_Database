@@ -63,7 +63,7 @@
     <Compile Include="AddEditUser.xaml.cs">
       <DependentUpon>AddEditUser.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BooksVeiwModel.cs" />
+    <Compile Include="ViewModel.cs" />
     <Compile Include="IAuthorRepository.cs" />
     <Compile Include="IBookRepository.cs" />
     <Compile Include="ICheckedOutRepository.cs" />

@@ -38,12 +38,12 @@ namespace LibraryDatabaseWPF
 
         private void OnSearch_Click(object sender, RoutedEventArgs e)
         {
-            if (DataContext is BooksVeiwModel viewModel)
+            if (DataContext is ViewModel viewModel)
             {
                 if (String.IsNullOrWhiteSpace(uxSearchText.Text))
                 {
 
-                    viewModel.BookList = viewModel.bookRepository.RetrieveBooks().ToList();
+                    viewModel.BookList = viewModel.bookRepository.FetchAllBooks().ToList();
                 }
                 else
                 {    
@@ -84,7 +84,7 @@ namespace LibraryDatabaseWPF
 
         private void OnGetTopBooksByGenre_Click(object sender, RoutedEventArgs e)
         {
-            if(DataContext is BooksVeiwModel viewModel)
+            if(DataContext is ViewModel viewModel)
             {
                 viewModel.BookList = viewModel.bookRepository.GetTopBooksByGenre().ToList();
             }
@@ -92,7 +92,7 @@ namespace LibraryDatabaseWPF
 
         private void OnGetBooksToReplace_Click(object sender, RoutedEventArgs e)
         {
-            if (DataContext is BooksVeiwModel viewModel)
+            if (DataContext is ViewModel viewModel)
             {
                 viewModel.BookList = viewModel.bookRepository.FetchBooksToReplace().ToList();
             }

@@ -20,11 +20,12 @@ namespace LibraryDatabaseWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly string connectionString = @"Server=localhost\SQLEXPRESS;Database=master;";
+        //enter your connection string here
+        private readonly string connectionString = @"Server=localhost\SQLEXPRESS;Database=master;Integrated Security=SSPI";
         public MainWindow()
         {
             InitializeComponent();
-            BooksVeiwModel viewModel = new BooksVeiwModel(new SqlBookRepository(connectionString));
+            ViewModel viewModel = new ViewModel(new SqlBookRepository(connectionString), new SqlUserRepository(connectionString));
             DataContext = viewModel;
         }
 

@@ -196,7 +196,7 @@ namespace LibraryDatabaseWPF
             }
         }
 
-        public UserReport CreateUserReport(userName)
+        public UserReport CreateUserReport( string userName)
         {
             // Save to database.
             using (var transaction = new TransactionScope())

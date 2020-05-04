@@ -50,12 +50,11 @@
         <StackPanel Grid.Column="1" Grid.RowSpan="2">
             <TextBox   Name="uxSearchText" Margin="10"></TextBox>
             <StackPanel Margin="10" Orientation="Horizontal" Height="35" VerticalAlignment="Top" HorizontalAlignment="Right">
-                <ComboBox IsReadOnly="True">
-                    <ComboBoxItem Content="Key Words"  IsSelected="True"/>
-                    <ComboBoxItem Content="Name"/>
-                    <ComboBoxItem Content="Phone Number"/>
-                    <ComboBoxItem Content="Email"/>
-                    <ComboBoxItem Content="Late Returns"/>
+                <ComboBox Name="uxSearchBy" IsReadOnly="True">
+                    <ComboBoxItem Tag="name" Content="Name" IsSelected="True"/>
+                    <ComboBoxItem Tag="phone" Content="Phone Number"/>
+                    <ComboBoxItem Tag="email" Content="Email"/>
+                    <ComboBoxItem Tag="id" Content="User ID"/>
 
                 </ComboBox>
                 <Button Click="OnSearch_Click" Margin="10,0,10,0.2" Width="80" Height="35" VerticalAlignment="Bottom">Search</Button>
