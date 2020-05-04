@@ -61,7 +61,7 @@ namespace LibraryDatabaseWPF
 
                         transaction.Complete();
 
-                        var userId = (int)command.Parameters["AuthorId"].Value;
+                        var userId = (int)command.Parameters["UserId"].Value;
 
                         return new Users(userId, userName, 0, phoneNumber, email, 0);
                     }
@@ -132,6 +132,34 @@ namespace LibraryDatabaseWPF
                     {
                         command.CommandType = CommandType.StoredProcedure;
                         command.Parameters.AddWithValue("ISBN", isbn);
+
+                        connection.Open();
+
+                        command.ExecuteNonQuery();
+
+                        transaction.Complete();
+
+                        using (var reader = command.ExecuteReader())
+                            return TranslateUsers(reader);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Get a list of top users
+        /// </summary>
+        /// <returns></returns>
+        public IReadOnlyList<Users> GetTopUsers()
+        {
+            // Save to database.
+            using (var transaction = new TransactionScope())
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    using (var command = new SqlCommand("Library.GetTopUsers", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
 
                         connection.Open();
 

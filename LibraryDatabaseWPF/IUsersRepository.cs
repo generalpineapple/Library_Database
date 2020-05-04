@@ -14,5 +14,7 @@ namespace LibraryDatabaseWPF
         void EditUserById(int userId, string userName, string userAddress, string phoneNumber, string email);
 
         IReadOnlyList<Users> FetchUserRentingBookByISBN(string isbn);
+
+        public IReadOnlyList<Users> GetTopUsers();
     }
 }
