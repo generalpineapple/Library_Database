@@ -41,9 +41,9 @@ namespace LibraryDatabaseWPF
 
                         transaction.Complete();
 
-                        var userId = (int)command.Parameters["UserId"].Value;
+                        //var userId = (int)command.Parameters["UserId"].Value;
 
-                        return GetInventoryByISBN(isbn);
+                        //return GetInventoryByISBN(isbn);
                     }
                 }
             }
@@ -86,7 +86,7 @@ namespace LibraryDatabaseWPF
             if (!reader.Read())
                 return null;
 
-            return new Users(
+            return new Inventory(
                reader.GetString(isbnOrdinal),
                reader.GetInt32(totalCopiesOrdinal),
                reader.GetInt32(totalCheckoutsOrdinal));

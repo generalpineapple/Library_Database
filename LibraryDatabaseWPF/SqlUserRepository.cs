@@ -271,9 +271,9 @@ namespace LibraryDatabaseWPF
             var users = new List<Users>();
 
             var userIdOrdinal = reader.GetOrdinal("UserId");
-            var userNameOrdinal = reader.GetOrdinal("Address");
+            var userNameOrdinal = reader.GetOrdinal("Name");
             var totalCheckoutsOrdinal = reader.GetOrdinal("TotalCheckouts");
-            var userAddressOrdinal = reader.GetOrdinal("Address");
+            //var userAddressOrdinal = reader.GetOrdinal("Address");
             var phoneNumberOrdinal = reader.GetOrdinal("PhoneNumber");
             var emailOrdinal = reader.GetOrdinal("Email");
             var lateReturnsOrdinal = reader.GetOrdinal("LateReturns");
@@ -282,7 +282,8 @@ namespace LibraryDatabaseWPF
             {
                 users.Add(
                     new Users(
-                        reader.GetInt32(userIdOrdinal),
+                        //reader.GetInt32(userIdOrdinal),
+                        1,
                         reader.GetString(userNameOrdinal),
                         reader.GetInt32(totalCheckoutsOrdinal),
                         reader.GetString(phoneNumberOrdinal),

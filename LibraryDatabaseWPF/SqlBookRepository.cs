@@ -490,9 +490,9 @@ namespace LibraryDatabaseWPF
             var genreIdOrdinal = reader.GetOrdinal("GenreId");
             var conditionIdOrdinal = reader.GetOrdinal("ConditionId");
 
-            string authorName = GetAuthorNameFromId(reader.GetInt32(authorIdOrdinal));
-            string genreName = GetGenreNameFromId(reader.GetInt32(genreIdOrdinal));
-            string conditionType = GetGenreNameFromId(reader.GetInt32(conditionIdOrdinal));
+            string authorName = "temp";// GetAuthorNameFromId(reader.GetInt32(authorIdOrdinal));
+            string genreName = "temp"; // GetGenreNameFromId(reader.GetInt32(genreIdOrdinal));
+            string conditionType = "temp";// GetGenreNameFromId(reader.GetInt32(conditionIdOrdinal));
 
 
             if (!reader.Read())
