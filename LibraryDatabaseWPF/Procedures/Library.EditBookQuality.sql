@@ -6,20 +6,16 @@ GO
 
 CREATE PROCEDURE [Library].EditBookQuality
    @BookId INT,
-   @ConditionType VARCHAR(64)
+   @conditionId INT
 AS
-
-BEGIN TRY
-	(SELECT C.ConditionId
-	FROM Library.Condition C
-	WHERE C.ConditionType IS LIKE '%@ConditionType%')AS conditionId
+BEGIN TRY	
 	UPDATE Library.Books
-	SET ConditionId AS conditionId, 		
+	SET ConditionId = @conditionId 		
 	WHERE BookId = @BookId;
 
 	IF @@ROWCOUNT = 0
 	BEGIN
-		DECLARE @Message NVARCHAR(256) = FORMATMESSAGE(N'No book with Id %d exists.', @UserId);
+		DECLARE @Message NVARCHAR(256) = FORMATMESSAGE(N'No book with Id %d exists.', @BookId);
 		THROW 50000, @Message, 1;
 	END;
 END TRY
