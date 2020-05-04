@@ -74,17 +74,251 @@ namespace LibraryDatabaseWPF
                         int authorId = GetAuthorIdFromName(authorName); 
                         
 
-                        return new Books(bookId, isbn, authorId, title, genreName, conditionType);
+                        return new Books(bookId, isbn, authorName, title, genreName, conditionType);
+                    }
+                }
+            }
+        }
+        
+        /// <summary>
+        /// edit the condition of a book 
+        /// </summary>
+        /// <param name="bookId"></param>
+        /// <param name="conditionId"></param>
+        /// <returns></returns>
+        public Books EditBookQuality(int bookId, int conditionId)
+        {
+            Books book = GetBooksFromId(bookId);
+
+            using (var transaction = new TransactionScope())
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    using (var command = new SqlCommand("Library.EditBookQuality", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("BookId", bookId);
+                        command.Parameters.AddWithValue("ConditionId", conditionId);
+
+                        connection.Open();
+
+                        command.ExecuteNonQuery();
+
+                        transaction.Complete();
+
+                        return new Books(
+                            bookId, 
+                            book.ISBN, 
+                            book.AuthorName, 
+                            book.Title, 
+                            book.GenreName, 
+                            GetConditionNameFromId(conditionId));
                     }
                 }
             }
         }
 
         /// <summary>
-        /// Get author id from an author name
+        /// Get all books from a certain author
         /// </summary>
         /// <param name="authorName"></param>
         /// <returns></returns>
+        public IReadOnlyList<Books> FetchBookByAuthor(string authorName)
+        {
+            if (string.IsNullOrWhiteSpace(authorName))
+                throw new ArgumentException("The parameter cannot be null or empty.", nameof(authorName));
+
+            using (var transaction = new TransactionScope())
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    using (var command = new SqlCommand("Library.FetchBookByAuthor", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("AuthorName", authorName);
+
+                        connection.Open();
+
+                        command.ExecuteNonQuery();
+
+                        transaction.Complete();
+
+                        using (var reader = command.ExecuteReader())
+                            return TranslateBooks(reader);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Get boook from ISBN number
+        /// </summary>
+        /// <param name="isbn"></param>
+        /// <returns></returns>
+        public Books FetchBookFromISBN(string isbn)
+        {
+            using (var transaction = new TransactionScope())
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    using (var command = new SqlCommand("Library.FetchBookByISBN", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("ISBN", isbn);
+
+                        connection.Open();
+
+                        command.ExecuteNonQuery();
+
+                        transaction.Complete();
+
+                        using (var reader = command.ExecuteReader())
+                            return TranslateBook(reader);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Get book from title name
+        /// </summary>
+        /// <param name="title"></param>
+        /// <returns></returns>
+        public Books FetchBookByTitle(string title)
+        {
+            using (var transaction = new TransactionScope())
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    using (var command = new SqlCommand("Library.FetchBookByTitle", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("Title", title);
+
+                        connection.Open();
+
+                        command.ExecuteNonQuery();
+
+                        transaction.Complete();
+
+                        using (var reader = command.ExecuteReader())
+                            return TranslateBook(reader);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Get the books that need to be replaced
+        /// </summary>
+        /// <returns></returns>
+        public IReadOnlyList<Books> FetchBooksToReplace()
+        {
+            using (var transaction = new TransactionScope())
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    using (var command = new SqlCommand("Library.FetchBookByAuthor", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        connection.Open();
+
+                        command.ExecuteNonQuery();
+
+                        transaction.Complete();
+
+                        using (var reader = command.ExecuteReader())
+                            return TranslateBooks(reader);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Get all books checked out by a certain user
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <returns></returns>
+        public IReadOnlyList<Books> GetBooksFromUser(string userName)
+        {
+            if (string.IsNullOrWhiteSpace(userName))
+                throw new ArgumentException("The parameter cannot be null or empty.", nameof(userName));
+
+            using (var transaction = new TransactionScope())
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    using (var command = new SqlCommand("Library.GetBooksFromUser", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("AuthorName", userName);
+
+                        connection.Open();
+
+                        command.ExecuteNonQuery();
+
+                        transaction.Complete();
+
+                        using (var reader = command.ExecuteReader())
+                            return TranslateBooks(reader);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Get the top books of each genre
+        /// </summary>
+        /// <returns></returns>
+        public IReadOnlyList<Books> GetTopBooksByGenre()
+        {
+            using (var transaction = new TransactionScope())
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    using (var command = new SqlCommand("Library.GetTopBooksByGenre", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        connection.Open();
+
+                        command.ExecuteNonQuery();
+
+                        transaction.Complete();
+
+                        using (var reader = command.ExecuteReader())
+                            return TranslateBooks(reader);
+                    }
+                }
+            }
+        }
+
+        private Books GetBookFromId(int bookId)
+        {
+
+            using (var transaction = new TransactionScope())
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    using (var command = new SqlCommand("Library.GetBookFromId", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("BookId", bookId);
+
+                        connection.Open();
+
+                        command.ExecuteNonQuery();
+
+                        transaction.Complete();
+
+                        using (var reader = command.ExecuteReader())
+                            return TranslateBook(reader);
+                    }
+                }
+            }
+        }
+
         private int GetAuthorIdFromName(string authorName)
         {
             if (string.IsNullOrWhiteSpace(authorName))
@@ -220,7 +454,7 @@ namespace LibraryDatabaseWPF
                conditionType);
         }
 
-        private IReadOnlyList<Books> TranslateAuthors(SqlDataReader reader)
+        private IReadOnlyList<Books> TranslateBooks(SqlDataReader reader)
         {
             var books = new List<Books>();
 
