@@ -10,20 +10,20 @@ using LibraryDatabaseWPF.Models;
 
 namespace LibraryDatabaseWPF
 {
-    public class SqlAuthorsRepository : IAuthorRepository
+    public class SqlAuthorRepository : IAuthorRepository
     {
         private readonly string connectionString;
 
-        public SqlAuthorsRepository(string connectionString)
+        public SqlAuthorRepository(string connectionString)
         {
             this.connectionString = connectionString;
         }
 
-        public Authors CreateAuthor(string name)
+        public Authors CreateAuthor(string authorName)
         {
             // Verify parameters.
-            if (string.IsNullOrWhiteSpace(name))
-                throw new ArgumentException("The parameter cannot be null or empty.", nameof(name));
+            if (string.IsNullOrWhiteSpace(authorName))
+                throw new ArgumentException("The parameter cannot be null or empty.", nameof(authorName));
 
             // Save to database.
             using (var transaction = new TransactionScope())
@@ -33,7 +33,7 @@ namespace LibraryDatabaseWPF
                     using (var command = new SqlCommand("Library.CreateAuthor", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
-                        command.Parameters.AddWithValue("AuthorName", name);
+                        command.Parameters.AddWithValue("AuthorName", authorName);
 
                         connection.Open();
 
@@ -43,11 +43,12 @@ namespace LibraryDatabaseWPF
 
                         var authorId = (int)command.Parameters["AuthorId"].Value;
 
-                        return new Authors(authorId, name);
+                        return new Authors(authorId, authorName);
                     }
                 }
             }
         }
+
         /*
         private Authors TranslateAuthor(SqlDataReader reader)
         {

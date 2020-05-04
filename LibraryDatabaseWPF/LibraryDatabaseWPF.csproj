@@ -83,8 +83,10 @@
     <Compile Include="Models\Inventory.cs" />
     <Compile Include="Models\Users.cs" />
     <Compile Include="RecordNotFoundException.cs" />
-    <Compile Include="SqlAuthorsRepository.cs" />
-    <Compile Include="SqlBooksRepository.cs" />
+    <Compile Include="SqlAuthorRepository.cs" />
+    <Compile Include="SqlBookRepository.cs" />
+    <Compile Include="SqlCheckedOutRepository.cs" />
+    <Compile Include="SqlUserRepository.cs" />
     <Compile Include="UserDatabase.xaml.cs">
       <DependentUpon>UserDatabase.xaml</DependentUpon>
     </Compile>
