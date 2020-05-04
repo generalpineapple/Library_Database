@@ -24,11 +24,11 @@
             <TextBox   Name="uxSearchText" Margin="10"></TextBox>
             <StackPanel Margin="10" Orientation="Horizontal" Height="35" VerticalAlignment="Top" HorizontalAlignment="Right">
                 <ComboBox IsReadOnly="True">
-                    <RadioButton Content="Key Words"  IsChecked="True"/>
-                    <RadioButton Content="Name"/>
-                    <RadioButton Content="Phone Number"/>
-                    <RadioButton Content="Email"/>
-                    <RadioButton Content="Late Returns"/>
+                    <ComboBoxItem Content="Key Words"  IsSelected="True"/>
+                    <ComboBoxItem Content="Name"/>
+                    <ComboBoxItem Content="Phone Number"/>
+                    <ComboBoxItem Content="Email"/>
+                    <ComboBoxItem Content="Late Returns"/>
 
                 </ComboBox>
                 <Button Click="OnSearch_Click" Margin="10,0,10,0.2" Width="80" Height="35" VerticalAlignment="Bottom">Search</Button>
