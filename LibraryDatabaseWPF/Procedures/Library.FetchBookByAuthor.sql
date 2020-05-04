@@ -9,7 +9,7 @@ CREATE PROCEDURE [Library].FetchBookByAuthor
 AS
 
 BEGIN TRY
-    SELECT B.BookId, B.ISBN, B.Title, B.GenreName, B.ConditionType 
+    SELECT B.BookId, B.ISBN, B.Title, B.GenreId, B.ConditionId 
     FROM [Library].Books B
     INNER JOIN [Library].Authors A ON B.AuthorId = A.AuthorId
     WHERE A.AuthorName = @Author
