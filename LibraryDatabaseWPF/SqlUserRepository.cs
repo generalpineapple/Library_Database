@@ -233,13 +233,14 @@ namespace LibraryDatabaseWPF
 
             while (reader.Read())
             {
-               users.Add(new Users(
-               reader.GetInt32(userIdOrdinal),
-               reader.GetString(userNameOrdinal),
-               reader.GetInt32(totalCheckoutsOrdinal),
-               reader.GetString(phoneNumberOrdinal),
-               reader.GetString(emailOrdinal),
-               reader.GetInt32(lateReturnsOrdinal)));
+                users.Add(
+                    new Users(
+                        reader.GetInt32(userIdOrdinal),
+                        reader.GetString(userNameOrdinal),
+                        reader.GetInt32(totalCheckoutsOrdinal),
+                        reader.GetString(phoneNumberOrdinal),
+                        reader.GetString(emailOrdinal),
+                        reader.GetInt32(lateReturnsOrdinal)));
             }
 
             return users;
