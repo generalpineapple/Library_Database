@@ -9,9 +9,8 @@ CREATE PROCEDURE [Library].FetchBookByTitle
 AS
 
 BEGIN TRY
-    SELECT B.BookId, B.ISBN, B.Title, A.AuthorName, B.GenreName, B.ConditionType 
+    SELECT B.BookId, B.ISBN, B.Title, B.AuthorId, B.GenreId, B.ConditionId
     FROM [Library].Books B
-    INNER JOIN [Library].Authors A ON B.AuthorId = A.AuthorId
     WHERE B.Title LIKE '%@Title%'
 
     IF @@ROWCOUNT = 0

@@ -10,10 +10,11 @@ AS
 
 SELECT
     B.BookId,
+    B.ISBN,
     B.AuthorId,
     B.Title,
-    B.GenreName,
-    A.AuthorName
+    B.GenreId,
+    B.ConditionId
 FROM
     (
         SELECT
@@ -26,8 +27,6 @@ FROM
         WHERE
             ConditionType = 'Replace'
     ) B
-    INNER JOIN
-        Library.Authors A ON A.AuthorId = B.AuthorId
 ORDER BY
     B.BookId ASC;
 	
