@@ -20,9 +20,12 @@ namespace LibraryDatabaseWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly string connectionString;
         public MainWindow()
         {
             InitializeComponent();
+            BooksVeiwModel viewModel = new BooksVeiwModel(new SqlBookRepository(connectionString));
+            DataContext = viewModel;
         }
 
         private void OnBack(object sender, RoutedEventArgs e)

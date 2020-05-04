@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using LibraryDatabaseWPF.Models;
 
 namespace LibraryDatabaseWPF
 {
@@ -20,9 +21,12 @@ namespace LibraryDatabaseWPF
     /// </summary>
     public partial class LibraryDatabase : Page
     {
+        private readonly string connectionString;
+        IEnumerable<Books> booksList;
+
         public LibraryDatabase()
         {
-            InitializeComponent();
+            InitializeComponent();            
         }
 
         private void OnAddBook_Click(object sender, RoutedEventArgs e)

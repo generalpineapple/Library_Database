@@ -35,7 +35,6 @@
             </StackPanel>
             <Button Click="OnAddUser_Click" Margin="10,30,10,10" Width="150" Height="40">Add User</Button>
             <Button Click="OnEditUser_Click" Margin="10" Width="150" Height="40">Edit User</Button>
-            <!-- TODO: Decide if we want to be able to delete users-->
             <Button Click="OnDeleteUser_Click" Margin="10" Width="150" Height="40">Delete User</Button>
 
             <StackPanel Orientation="Horizontal"  VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10">
