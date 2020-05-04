@@ -21,7 +21,7 @@ namespace LibraryDatabaseWPF
     public partial class MainWindow : Window
     {
         //enter your connection string here
-        //private readonly string connectionString = @"Server=localhost\SQLEXPRESS;Database=master;Integrated Security=SSPI";
+        private readonly string connectionString = @"Server=localhost\SQLEXPRESS;Database=master;Integrated Security=SSPI";
         public MainWindow()
         {
             InitializeComponent();
