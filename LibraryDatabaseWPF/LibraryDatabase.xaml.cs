@@ -77,7 +77,7 @@ namespace LibraryDatabaseWPF
         {
             if(uxListBox.SelectedItem is Books book)
             {
-                
+                NavigationService.Navigate(new UserDatabase(book));
             }
 
         }
