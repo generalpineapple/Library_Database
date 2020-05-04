@@ -13,9 +13,11 @@ namespace LibraryDatabaseWPF
         public IList<Users> UserList { get; set; }
         public IBookRepository bookRepository;
         public IUsersRepository usersRepository;
+        public ICheckedOutRepository checkedOutRepository;
 
-        public ViewModel(IBookRepository bookRepository, IUsersRepository usersRepository)
+        public ViewModel(IBookRepository bookRepository, IUsersRepository usersRepository, ICheckedOutRepository checkedOutRepository)
         {
+            this.checkedOutRepository = checkedOutRepository;
             this.bookRepository = bookRepository;
             this.usersRepository = usersRepository;
             BookList = bookRepository.FetchAllBooks().ToList();

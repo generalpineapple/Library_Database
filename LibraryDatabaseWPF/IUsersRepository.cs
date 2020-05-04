@@ -11,6 +11,8 @@ namespace LibraryDatabaseWPF
     {
         void CreateUser(string name, string address, string phoneNumber, string email);
 
+        UserReport CreateUserReport(string userName);
+
         void EditUserById(int userId, string userName, string userAddress, string phoneNumber, string email);
 
         IReadOnlyList<Users> FetchUserRentingBookByISBN(string isbn);

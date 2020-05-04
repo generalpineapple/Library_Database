@@ -22,11 +22,10 @@ namespace LibraryDatabaseWPF
     {
         //enter your connection string here
         //private readonly string connectionString = @"Server=localhost\SQLEXPRESS;Database=master;Integrated Security=SSPI";
-        private readonly string connectionString = @"Data Source=mssql.cs.ksu.edu;Initial Catalog=sbrunner5124;User ID=sbrunner5124;Password=Adpyr235124";
         public MainWindow()
         {
             InitializeComponent();
-            ViewModel viewModel = new ViewModel(new SqlBookRepository(connectionString), new SqlUserRepository(connectionString));
+            ViewModel viewModel = new ViewModel(new SqlBookRepository(connectionString), new SqlUserRepository(connectionString), new SqlCheckedOutRepository(connectionString));
             DataContext = viewModel;
         }
 

@@ -68,7 +68,6 @@
                 <Button Click="OnAddBook_Click" Margin="10,0,10,0.2" Width="120">Add Book</Button>
                 <Button Click="OnEditBook_Click" Margin="10,0,10,0.2" Width="120">Edit Selected Book</Button>
             </StackPanel>
-            <Button Click="OnDeleteBook_Click" Margin="10" Height="35" Width="120">Delete Selected Book</Button>
             <StackPanel Orientation="Horizontal" Height="35" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10">
                 <Button Click="OnGetTopBooksByGenre_Click" Margin="10,0,10,0.2" Width="120">Top Books Report</Button>
                 <Button Click="OnGetBooksToReplace_Click" Margin="10,0,10,0.2" Width="120">Replacement Report</Button>

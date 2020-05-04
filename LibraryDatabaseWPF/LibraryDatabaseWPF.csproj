@@ -63,6 +63,9 @@
     <Compile Include="AddEditUser.xaml.cs">
       <DependentUpon>AddEditUser.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserReportWindow.xaml.cs">
+      <DependentUpon>UserReportWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel.cs" />
     <Compile Include="IAuthorRepository.cs" />
     <Compile Include="IBookRepository.cs" />
@@ -131,6 +134,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="UserDatabase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserReportWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

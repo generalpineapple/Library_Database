@@ -33,6 +33,7 @@ namespace LibraryDatabaseWPF
             uxName.Text = users.Name;
             uxEmail.Text = users.Email;
             uxNumber.Text = users.PhoneNumber;
+            //TODO: add Address
         }
 
 

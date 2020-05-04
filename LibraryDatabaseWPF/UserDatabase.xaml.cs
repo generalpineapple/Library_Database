@@ -21,9 +21,26 @@ namespace LibraryDatabaseWPF
     /// </summary>
     public partial class UserDatabase : Page
     {
+        private Books book;
         public UserDatabase()
         {
             InitializeComponent();
+            uxAdd.IsEnabled = true;
+            uxEdit.IsEnabled = true;
+            uxReport.IsEnabled = true;
+            uxTop.IsEnabled = true;
+            uxCheckout.IsEnabled = false;
+        }
+
+        public UserDatabase(Books book)
+        {
+            InitializeComponent();
+            this.book = book;
+            uxAdd.IsEnabled = false;
+            uxEdit.IsEnabled = false;
+            uxReport.IsEnabled = false;
+            uxTop.IsEnabled = false;
+            uxCheckout.IsEnabled = true;
         }
 
         private void OnAddUser_Click(object sender, RoutedEventArgs e)
@@ -33,15 +50,10 @@ namespace LibraryDatabaseWPF
 
         private void OnEditUser_Click(object sender, RoutedEventArgs e)
         {
-            if(uxListBox.SelectedItem is Users user)
+            if (uxListBox.SelectedItem is Users user)
             {
                 NavigationService.Navigate(new AddEditUser(user));
             }
-        }
-
-        private void OnDeleteUser_Click(object sender, RoutedEventArgs e)
-        {
-            //TODO: Delete User From the database
         }
 
         private void OnSearch_Click(object sender, RoutedEventArgs e)
@@ -83,11 +95,27 @@ namespace LibraryDatabaseWPF
 
         private void OnGetUserReport_Click(object sender, RoutedEventArgs e)
         {
-            if (DataContext is ViewModel viewModel) 
-            { 
-               //TODO
+            if (uxListBox.SelectedItem is Users user)
+            {
+                if (DataContext is ViewModel viewModel)
+                {
+                    UserReport userReport = viewModel.usersRepository.CreateUserReport(user.Name);
+                    UserReportWindow userReportWindow = new UserReportWindow(userReport);
+                }
             }
 
+        }
+
+        private void OnCheckout_Click(object sender, RoutedEventArgs e)
+        {
+            if(uxListBox.SelectedItem is Users user)
+            {
+                if(DataContext is ViewModel viewModel)
+                {
+                    viewModel.checkedOutRepository.CreateCheckedOut(book.BookId, user.UserId);
+                    NavigationService.Navigate(new ChooseDatabase());
+                }
+            }
         }
     }
 }
