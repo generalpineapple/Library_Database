@@ -170,11 +170,13 @@
     <Content Include="Procedures\Library.EditInventoryByISBN.sql" />
     <Content Include="Procedures\Library.EditUserById.sql" />
     <Content Include="Procedures\Library.FetchAllBooks.sql" />
+    <Content Include="Procedures\Library.FetchAllInventory.sql" />
     <Content Include="Procedures\Library.FetchAllUsers.sql" />
     <Content Include="Procedures\Library.FetchBookByAuthor.sql" />
     <Content Include="Procedures\Library.FetchBookByISBN.sql" />
     <Content Include="Procedures\Library.FetchBookByTitle.sql" />
     <Content Include="Procedures\Library.FetchBooksToReplace.sql" />
+    <Content Include="Procedures\Library.FetchInventoryByISBN.sql" />
     <Content Include="Procedures\Library.FetchTransactionById.sql" />
     <Content Include="Procedures\Library.FetchUsersRentingBookByISBN.sql" />
     <Content Include="Procedures\Library.GetAuthorIdFromName.sql" />
