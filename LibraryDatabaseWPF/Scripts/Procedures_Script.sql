@@ -75,43 +75,48 @@ INSERT Library.Inventory(ISBN, TotalCopies)
 VALUES(@ISBN, @TotalCopies);
 GO
 
-CREATE PROCEDURE [Library].CreateUserReport
-   @UserName VARCHAR(64)
+CREATE PROCEDURE [Library].[CreateUserReport]
+   @UserId VARCHAR(64)
 AS
-SELECT
-	U.TotalCheckouts,
-	(
-		SELECT COUNT(Ch.TransactionId)
-		FROM [Library].CheckedOut Ch
-		INNER JOIN [Library].Users U ON Ch.UserId = U.UserId
-		WHERE U.Name = @UserName AND
-			Ch.ReturnedDate IS NULL
-	)AS CurrentCheckOuts,
-	(U.TotalCheckouts - U.LateReturns -
-		(
-			SELECT COUNT(Ch.TransactionId)
-			FROM [Library].CheckedOut Ch
-			INNER JOIN [Library].Users U ON Ch.UserId = U.UserId
-			WHERE U.Name = @UserName AND
-				Ch.ReturnedDate IS NULL
-		)
-	)AS OnTimeReturns,
-	U.LateReturns,
-	(
-		SELECT COUNT(Ch.TransactionId)
-		FROM [Library].CheckedOut Ch
-		INNER JOIN [Library].Users U ON Ch.UserId = U.UserId
-		WHERE U.Name = @UserName AND
-			Ch.ReturnedDate IS NULL AND
-			Ch.DueDate < GETDATE()
-	)AS OverdueBooks,
-	SUM(Ch.ReturnedDate - Ch.DueDate) OVER (
-	PARTITION BY Ch.UserId) AS DaysLate
-FROM [Library].Users U
-INNER JOIN [Library].CheckedOut Ch ON U.UserId = Ch.UserId
-WHERE U.Name = @UserName
-GROUP BY U.UserId, U.TotalCheckouts, U.LateReturns
-ORDER BY U.TotalCheckouts DESC, U.LateReturns ASC;
+SELECT 
+    users.[Name],
+    users.UserId,
+    users.TotalCheckouts, 
+    (users.TotalCheckouts - (
+        SELECT 
+            SUM([out].UserId)
+        FROM 
+            Library.CheckedOut [out]
+        WHERE
+            [out].UserId = users.UserId
+            AND 
+            [out].ReturnedDate > [out].DueDate
+    )) AS OnTimeReturns,
+    users.LateReturns, 
+    (
+        SELECT 
+            SUM([out].UserId)
+        FROM 
+            Library.CheckedOut [out]
+        WHERE
+            [out].UserId = users.UserId
+            AND 
+            [out].ReturnedDate > [out].DueDate
+    ) AS OverDueBooks, 
+    (15*(
+        SELECT 
+            SUM([out].UserId)
+        FROM 
+            Library.CheckedOut [out]
+        WHERE
+            [out].UserId = users.UserId
+            AND 
+            [out].ReturnedDate > [out].DueDate
+    )) AS LateFees 
+FROM 
+    Library.Users users
+WHERE 
+    users.[UserId] = @UserId; 
 GO
 
 CREATE OR ALTER PROCEDURE Library.CreateUser
