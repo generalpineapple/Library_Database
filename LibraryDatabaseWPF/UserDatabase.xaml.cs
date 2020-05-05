@@ -21,6 +21,7 @@ namespace LibraryDatabaseWPF
     /// </summary>
     public partial class UserDatabase : Page
     {
+        private ViewModel view = new ViewModel();
         private Books book;
         /// <summary>
         /// confirms that all buttons are enabled except the checkout button
@@ -33,6 +34,7 @@ namespace LibraryDatabaseWPF
             uxReport.IsEnabled = true;
             uxTop.IsEnabled = true;
             uxCheckout.IsEnabled = false;
+            DataContext = view;
         }
 
         /// <summary>
@@ -48,6 +50,7 @@ namespace LibraryDatabaseWPF
             uxReport.IsEnabled = false;
             uxTop.IsEnabled = false;
             uxCheckout.IsEnabled = true;
+            DataContext = view;
         }
 
         /// <summary>
@@ -105,6 +108,7 @@ namespace LibraryDatabaseWPF
                                 viewModel.UserList = viewModel.UserList.Where(user => user.UserId == x).ToList();
                             break;
                     }
+                    UpdateList();
                 }
             }
         }
@@ -119,6 +123,8 @@ namespace LibraryDatabaseWPF
             if (DataContext is ViewModel viewModel)
             {
                 viewModel.UserList = viewModel.usersRepository.GetTopUsers().ToList();
+                UpdateList();
+
             }
         }
 
@@ -135,6 +141,8 @@ namespace LibraryDatabaseWPF
                 {
                     UserReport userReport = viewModel.usersRepository.CreateUserReport(user.Name);
                     UserReportWindow userReportWindow = new UserReportWindow(userReport);
+                    UpdateList();
+
                 }
             }
 
@@ -147,8 +155,18 @@ namespace LibraryDatabaseWPF
                 if(DataContext is ViewModel viewModel)
                 {
                     viewModel.checkedOutRepository.CreateCheckedOut(book.BookId, user.UserId);
+                    viewModel.checkedOutRepository.IncrementCheckouts(user.UserId);
                     NavigationService.Navigate(new ChooseDatabase());
                 }
+            }
+        }
+
+        private void UpdateList()
+        {
+            if (DataContext is ViewModel viewModel)
+            {
+                uxListBox.ItemsSource = new List<Users>(); 
+                uxListBox.ItemsSource = viewModel.UserList;
             }
         }
     }

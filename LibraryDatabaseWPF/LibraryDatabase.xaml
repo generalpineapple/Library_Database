@@ -25,11 +25,13 @@
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Title: "/>
                             <TextBlock Text="{Binding Path=Title}"/>
+                            <TextBlock Text="   "/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                 <TextBlock Text="Genre: "/>
                                 <TextBlock Text="{Binding Path=GenreName}"/>
+                                <TextBlock Text="   "/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <TextBlock Text="Author ID: "/>
@@ -40,6 +42,7 @@
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                 <TextBlock Text="Condition: "/>
                                 <TextBlock Text="{Binding Path=ConditionType}"/>
+                                <TextBlock Text="   "/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <TextBlock Text="ISBN: "/>

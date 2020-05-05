@@ -19,7 +19,7 @@ namespace LibraryDatabaseWPF
         /// <returns>
         /// The resulting instance of <see cref="Person"/>.
         /// </returns>
-        Authors CreateAuthor(string name);
+        void CreateAuthor(string name);
 
     }
 }

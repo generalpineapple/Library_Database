@@ -30,7 +30,7 @@ namespace LibraryDatabaseWPF
         /// <param name="bookId"></param>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public CheckedOut CreateCheckedOut(int bookId, int userId)
+        public void CreateCheckedOut(int bookId, int userId)
         {
 
             // Save to database.
@@ -50,13 +50,39 @@ namespace LibraryDatabaseWPF
 
                         transaction.Complete();
 
-                        var transactionId = (int)command.Parameters["TransactionId"].Value;
+                        //var transactionId = (int)command.Parameters["TransactionId"].Value;
 
-                        return FetchTransactionById(transactionId);
+                       //return FetchTransactionById(transactionId);
                     }
                 }
             }
         }
+
+        public void IncrementCheckouts(int userId)
+        {
+            using (var transaction = new TransactionScope())
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    using (var command = new SqlCommand("Library.IncrementCheckouts", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("UserId", userId);
+
+                        connection.Open();
+
+                        command.ExecuteNonQuery();
+
+                        transaction.Complete();
+
+                        //var transactionId = (int)command.Parameters["TransactionId"].Value;
+
+                        //return FetchTransactionById(transactionId);
+                    }
+                }
+            }
+        }
+
 
         public CheckedOut FetchTransactionById(int transactionId)
         {

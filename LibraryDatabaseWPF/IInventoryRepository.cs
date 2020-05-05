@@ -9,7 +9,7 @@ namespace LibraryDatabaseWPF
 {
     public interface IInventoryRepository
     {
-        Inventory CreateInventory(string isbn);
+        void CreateInventory(string isbn);
 
         Inventory GetInventoryByISBN(string isbn);
     }

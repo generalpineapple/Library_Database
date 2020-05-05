@@ -10,6 +10,8 @@ namespace LibraryDatabaseWPF
     public interface ICheckedOutRepository
     {
 
-        CheckedOut CreateCheckedOut(int bookId, int userId);
+        void CreateCheckedOut(int bookId, int userId);
+        void IncrementCheckouts(int userId);
+
     }
 }

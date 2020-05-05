@@ -9,7 +9,7 @@ namespace LibraryDatabaseWPF
 {
     public interface IUsersRepository
     {
-        Users CreateUser(string name, string address, string phoneNumber, string email);
+        void CreateUser(string name, string address, string phoneNumber, string email);
 
         UserReport CreateUserReport(string userName);
 
@@ -20,5 +20,8 @@ namespace LibraryDatabaseWPF
         IReadOnlyList<Users> GetTopUsers();
 
         IReadOnlyList<Users> FetchAllUsers();
+
+        IReadOnlyList<Users> FetchUserByName(string name);
+
     }
 }

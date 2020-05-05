@@ -12,7 +12,7 @@ CREATE PROCEDURE [Library].EditUserById
    @UserId INT 
 AS
 
-BEGIN TRY
+
 	UPDATE Library.Users
 	SET Name = @Name, 
 		Address = @Address, 
@@ -20,22 +20,6 @@ BEGIN TRY
 		Email = @Email
 	WHERE UserId = @UserId;
 
-	IF @@ROWCOUNT = 0
-	BEGIN
-		DECLARE @Message NVARCHAR(256) = FORMATMESSAGE(N'No user with UserId %d exists.', @UserId);
-		THROW 50000, @Message, 1;
-	END;
-END TRY
-BEGIN CATCH
-	DECLARE @ErrorMessage NVARCHAR(1024) =
-      N'An error occurred at line ' +
-         CAST(ERROR_LINE() AS NVARCHAR(10)) +
-         N' when updating the user: ' +
-         ERROR_MESSAGE();
-         
-   PRINT @ErrorMessage;
-
-   THROW; -- Rethrow.
-END CATCH;
+	
 GO
 	

@@ -21,9 +21,11 @@ namespace LibraryDatabaseWPF
     /// </summary>
     public partial class LibraryDatabase : Page
     {
+        private ViewModel view = new ViewModel();
         public LibraryDatabase()
         {
-            InitializeComponent();            
+            InitializeComponent();
+            DataContext = view;
         }
 
         /// <summary>
@@ -61,6 +63,7 @@ namespace LibraryDatabaseWPF
                 {
 
                     viewModel.BookList = viewModel.bookRepository.FetchAllBooks().ToList();
+                    UpdateList();
                 }
                 else
                 {    
@@ -80,6 +83,7 @@ namespace LibraryDatabaseWPF
                             viewModel.BookList.Add(viewModel.bookRepository.FetchBookFromISBN(uxSearchText.Text));
                             break;
                     }
+                    UpdateList();
                 }
             }
         }
@@ -113,6 +117,8 @@ namespace LibraryDatabaseWPF
             if(DataContext is ViewModel viewModel)
             {
                 viewModel.BookList = viewModel.bookRepository.GetTopBooksByGenre().ToList();
+                UpdateList();
+                
             }
         }
 
@@ -125,7 +131,18 @@ namespace LibraryDatabaseWPF
         {
             if (DataContext is ViewModel viewModel)
             {
+                viewModel.BookList = new List<Books>(); 
                 viewModel.BookList = viewModel.bookRepository.FetchBooksToReplace().ToList();
+                UpdateList(); 
+            }
+        }
+        
+        private void UpdateList()
+        {
+            if (DataContext is ViewModel viewModel)
+            {
+                uxListBox.ItemsSource = new List<Object>();
+                uxListBox.ItemsSource = viewModel.BookList;
             }
         }
     }

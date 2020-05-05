@@ -28,7 +28,7 @@ namespace LibraryDatabaseWPF
         /// <param name="phoneNumber"></param>
         /// <param name="email"></param>
         /// <returns></returns>
-        public Users CreateUser(string userName, string userAddress, string phoneNumber, string email)
+        public void CreateUser(string userName, string userAddress, string phoneNumber, string email)
         {
             // Verify parameters.
             if (string.IsNullOrWhiteSpace(userName))
@@ -61,9 +61,9 @@ namespace LibraryDatabaseWPF
 
                         transaction.Complete();
 
-                        var userId = (int)command.Parameters["UserId"].Value;
+                        //var userId = (int)command.Parameters["UserId"].Value;
 
-                        return new Users(userId, userName, 0, phoneNumber, email, 0);
+                        //return new Users(userId, userName, 0, phoneNumber, email, 0);
                     }
                 }
             }
@@ -81,9 +81,9 @@ namespace LibraryDatabaseWPF
 
                         connection.Open();
 
-                        command.ExecuteNonQuery();
+                        //command.ExecuteNonQuery();
 
-                        transaction.Complete();
+                        //transaction.Complete();
 
                         using (var reader = command.ExecuteReader())
                             return TranslateUsers(reader);
@@ -157,9 +157,9 @@ namespace LibraryDatabaseWPF
 
                         connection.Open();
 
-                        command.ExecuteNonQuery();
+                        //command.ExecuteNonQuery();
 
-                        transaction.Complete();
+                        //transaction.Complete();
 
                         using (var reader = command.ExecuteReader())
                             return TranslateUsers(reader);
@@ -185,9 +185,33 @@ namespace LibraryDatabaseWPF
 
                         connection.Open();
 
-                        command.ExecuteNonQuery();
+                        //command.ExecuteNonQuery();
 
-                        transaction.Complete();
+                       // transaction.Complete();
+
+                        using (var reader = command.ExecuteReader())
+                            return TranslateUsers(reader);
+                    }
+                }
+            }
+        }
+        public IReadOnlyList<Users> FetchUserByName(string name)
+        {
+            // Save to database.
+            using (var transaction = new TransactionScope())
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    using (var command = new SqlCommand("Library.FetchUserByName", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("Name", name);
+
+                        connection.Open();
+
+                        //command.ExecuteNonQuery();
+
+                        // transaction.Complete();
 
                         using (var reader = command.ExecuteReader())
                             return TranslateUsers(reader);
@@ -210,9 +234,9 @@ namespace LibraryDatabaseWPF
 
                         connection.Open();
 
-                        command.ExecuteNonQuery();
+                        //command.ExecuteNonQuery();
 
-                        transaction.Complete();
+                        //transaction.Complete();
 
                         using (var reader = command.ExecuteReader())
                             return TranslateUserReport(reader);
@@ -271,9 +295,9 @@ namespace LibraryDatabaseWPF
             var users = new List<Users>();
 
             var userIdOrdinal = reader.GetOrdinal("UserId");
-            var userNameOrdinal = reader.GetOrdinal("Address");
+            var userNameOrdinal = reader.GetOrdinal("Name");
             var totalCheckoutsOrdinal = reader.GetOrdinal("TotalCheckouts");
-            var userAddressOrdinal = reader.GetOrdinal("Address");
+            //var userAddressOrdinal = reader.GetOrdinal("Address");
             var phoneNumberOrdinal = reader.GetOrdinal("PhoneNumber");
             var emailOrdinal = reader.GetOrdinal("Email");
             var lateReturnsOrdinal = reader.GetOrdinal("LateReturns");
