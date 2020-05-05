@@ -13,19 +13,19 @@
         </Grid.ColumnDefinitions>
         <StackPanel>
             <Label Height="30" Margin="5" Content="User Id:"/>
-            <Label Height="30" Margin="5" Content="Current Checkouts:"/>
+            <Label Height="30" Margin="5" Content="Total Checkouts:"/>
             <Label Height="30" Margin="5" Content="On Time Returns:"/>
             <Label Height="30" Margin="5" Content="Late Returns:"/>
             <Label Height="30" Margin="5" Content="Overdue Books:"/>
-            <Label Height="30" Margin="5" Content="Days Late:"/>
+            <Label Height="30" Margin="5" Content="Late Fees:"/>
         </StackPanel>
         <StackPanel Grid.Column="1">
-            <TextBlock Height="30" Margin="5" Name="uxID"/>
-            <TextBlock Height="30" Margin="5" Name="uxCurrent"/>
-            <TextBlock Height="30" Margin="5" Name="uxOnTime"/>
-            <TextBlock Height="30" Margin="5" Name="uxLate"/>
-            <TextBlock Height="30" Margin="5" Name="uxOverdue"/>
-            <TextBlock Height="30" Margin="5" Name="uxDays"/>
+            <TextBlock Height="30" Margin="5" Name="uxID" Text="{Binding Path=UserId}"/>
+            <TextBlock Height="30" Margin="5" Name="uxCurrent" Text="{Binding Path=UserId}"/>
+            <TextBlock Height="30" Margin="5" Name="uxOnTime" Text="{Binding Path=UserId}"/>
+            <TextBlock Height="30" Margin="5" Name="uxLate" Text="{Binding Path=UserId}"/>
+            <TextBlock Height="30" Margin="5" Name="uxOverdue" Text="{Binding Path=UserId}"/>
+            <TextBlock Height="30" Margin="5" Name="uxDays" Text="{Binding Path=UserId}"/>
         </StackPanel>
 
         <Button Grid.ColumnSpan="2" Height="30" Width="110" Margin="20" HorizontalAlignment="Center" VerticalAlignment="Bottom" Content="Close" Click="OnClose_Click"/>

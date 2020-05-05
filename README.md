@@ -33,3 +33,17 @@ The string should be in the format of
 ```C#
 private readonly string connectionString = @"Data Source = <DB FQDN OR DB IP>; Database = <DATABASE NAME>; User ID = <DB USERNAME>; Password= <DB PASSWORD>";
 ```
+
+## Functionality
+
+### Working
+The functionality that is currently implemented
+
+- Ability to see the entire list of books
+- Ability to see the entire list of users
+- Ability to look up books by name, isbn and author
+- Ability to look up users by name and user ID
+- Ability to checkout books to certain users
+- Ability to list top 10 users by number of checkouts
+- Incrementing of total checkouts whenever a user checkouts
+

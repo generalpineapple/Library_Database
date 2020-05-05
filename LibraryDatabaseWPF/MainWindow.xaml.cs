@@ -21,8 +21,7 @@ namespace LibraryDatabaseWPF
     public partial class MainWindow : Window
     {
         //enter your connection string here
-        //private readonly string connectionString = @"Data Source = mssql.cs.ksu.edu; Initial Catalog = sbrunner5124; User ID = sbrunner5124; Password=Adpyr235124";
-        private readonly string connectionString = @"Data Source = mssql.cs.ksu.edu; Database = sbrunner5124; User ID = sbrunner5124; Password=Adpyr235124";
+        private readonly string connectionString = @"Data Source = <DB FQDN OR DB IP>; Database = <DB NAME>; User ID = <DB UID>; Password=<DB PASSWORD>";
 
         public MainWindow()
         {

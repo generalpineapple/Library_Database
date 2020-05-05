@@ -28,8 +28,8 @@ namespace LibraryDatabaseWPF
         {
             InitializeComponent();
             uxID.Text = userReport.UserId.ToString();
-            uxCurrent.Text = userReport.CurrentCheckouts.ToString();
-            uxDays.Text = userReport.DaysLate.ToString();
+            uxCurrent.Text = userReport.TotalCheckouts.ToString();
+            uxDays.Text = userReport.LateFees.ToString();
             uxLate.Text = userReport.LateReturns.ToString();
             uxOnTime.Text = userReport.OnTimeReturns.ToString();
             uxOverdue.Text = userReport.OverDueBooks.ToString();

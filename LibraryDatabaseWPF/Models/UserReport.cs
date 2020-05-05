@@ -8,21 +8,23 @@ namespace LibraryDatabaseWPF.Models
 {
     public class UserReport
     {
+        public string Name { get; }
         public int UserId { get; }
-        public int CurrentCheckouts { get; }
+        public int TotalCheckouts { get; }
         public int OnTimeReturns { get; }
         public int LateReturns { get; }
         public int OverDueBooks { get;  }
-        public int DaysLate { get;  }
+        public int LateFees { get;  }
 
-        public UserReport(int userId, int currentCheckouts, int onTimeReturns, int lateReturns, int overDueBooks, int daysLate)
+        public UserReport(string name, int userId, int totalCheckouts, int onTimeReturns, int lateReturns, int overDueBooks, int lateFees)
         {
+            Name = name; 
             UserId = userId;
-            CurrentCheckouts = currentCheckouts;
+            TotalCheckouts = totalCheckouts;
             OnTimeReturns = onTimeReturns;
-            LateReturns = LateReturns;
+            LateReturns = lateReturns;
             OverDueBooks = overDueBooks;
-            DaysLate = daysLate;
+            LateFees = lateFees;
         }
     }
 }

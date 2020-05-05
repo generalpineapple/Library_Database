@@ -220,7 +220,7 @@ namespace LibraryDatabaseWPF
             }
         }
 
-        public UserReport CreateUserReport( string userName)
+        public UserReport CreateUserReport(int userId)
         {
             // Save to database.
             using (var transaction = new TransactionScope())
@@ -230,7 +230,7 @@ namespace LibraryDatabaseWPF
                     using (var command = new SqlCommand("Library.CreateUserReport", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
-                        command.Parameters.AddWithValue("UserName", userName);
+                        command.Parameters.AddWithValue("UserId", userId);
 
                         connection.Open();
 
@@ -248,23 +248,61 @@ namespace LibraryDatabaseWPF
         {
             //public UserReport(int currentCheckouts, int onTimeReturns, int lateReturns, int overDueBooks, int daysLate)
 
+            var nameOrdinal = reader.GetOrdinal("Name");
             var userIdOrdinal = reader.GetOrdinal("UserId");
-            var currentCheckoutsOrdinal = reader.GetOrdinal("CurrentCheckOuts");
+            var totalCheckoutsOrdinal = reader.GetOrdinal("TotalCheckOuts");
             var onTimeReturnsOrdinal = reader.GetOrdinal("OnTimeReturns");
             var lateReturnsOrdinal = reader.GetOrdinal("LateReturns");
             var overDueBooksOrdinal = reader.GetOrdinal("OverdueBooks");
-            var daysLateOrdinal = reader.GetOrdinal("DaysLate");
+            var lateFeesOrdinal = reader.GetOrdinal("LateFees");
 
             if (!reader.Read())
                 return null;
 
+            string name = reader.GetString(nameOrdinal);
+            int id = reader.GetInt32(userIdOrdinal);
+            int checkouts = reader.GetInt32(totalCheckoutsOrdinal);
+
+            int ontime; 
+            if (!reader.IsDBNull(onTimeReturnsOrdinal))
+            {
+                ontime = reader.GetInt32(onTimeReturnsOrdinal);
+            }
+            else
+            {
+                ontime = 0;
+            }
+
+            int late = reader.GetInt32(lateReturnsOrdinal);
+
+            int overdue;
+            if (!reader.IsDBNull(overDueBooksOrdinal))
+            {
+                overdue = reader.GetInt32(overDueBooksOrdinal);
+            }
+            else
+            {
+                overdue = 0;
+            }
+
+            int fees;
+            if (!reader.IsDBNull(lateFeesOrdinal))
+            {
+                fees = reader.GetInt32(lateFeesOrdinal);
+            }
+            else
+            {
+                fees = 0;
+            }
+
             return new UserReport(
-               reader.GetInt32(userIdOrdinal),
-               reader.GetInt32(currentCheckoutsOrdinal),
-               reader.GetInt32(onTimeReturnsOrdinal),
-               reader.GetInt32(lateReturnsOrdinal),
-               reader.GetInt32(overDueBooksOrdinal),
-               reader.GetInt32(daysLateOrdinal));
+               name,
+               id,
+               checkouts,
+               ontime,
+               late,
+               overdue,
+               fees);
         }
 
         private Users TranslateUser(SqlDataReader reader)

@@ -139,10 +139,10 @@ namespace LibraryDatabaseWPF
             {
                 if (DataContext is ViewModel viewModel)
                 {
-                    UserReport userReport = viewModel.usersRepository.CreateUserReport(user.Name);
+                    UserReport userReport = viewModel.usersRepository.CreateUserReport(user.UserId);
                     UserReportWindow userReportWindow = new UserReportWindow(userReport);
                     UpdateList();
-
+                    userReportWindow.Show(); 
                 }
             }
 
