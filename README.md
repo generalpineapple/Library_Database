@@ -41,6 +41,7 @@ The functionality that is currently implemented
 
 - Ability to see the entire list of books
 - Ability to see the entire list of users
+- Ability to generate user reports
 - Ability to look up books by name, isbn and author
 - Ability to look up users by name and user ID
 - Ability to checkout books to certain users
