@@ -155,6 +155,7 @@ namespace LibraryDatabaseWPF
                 if(DataContext is ViewModel viewModel)
                 {
                     viewModel.checkedOutRepository.CreateCheckedOut(book.BookId, user.UserId);
+                    viewModel.checkedOutRepository.IncrementCheckouts(user.UserId);
                     NavigationService.Navigate(new ChooseDatabase());
                 }
             }

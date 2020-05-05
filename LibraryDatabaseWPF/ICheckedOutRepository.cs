@@ -11,6 +11,7 @@ namespace LibraryDatabaseWPF
     {
 
         void CreateCheckedOut(int bookId, int userId);
+        void IncrementCheckouts(int userId);
 
     }
 }

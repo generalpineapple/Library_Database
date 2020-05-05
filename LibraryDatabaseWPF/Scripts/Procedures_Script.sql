@@ -27,6 +27,7 @@ DROP PROCEDURE IF EXISTS Library.GetConditionFromId;
 DROP PROCEDURE IF EXISTS Library.GetGenreNameFromId;
 DROP PROCEDURE IF EXISTS Library.GetTopBooksByGenre;
 DROP PROCEDURE IF EXISTS Library.GetTopUsers;
+DROP PROCEDURE IF EXISTS [Library].IncrementCheckouts;
 DROP PROCEDURE IF EXISTS Library.ReturnCheckedOut;
 GO
 
@@ -336,6 +337,14 @@ AS
      SELECT TOP (10) U.UserId, U.Name, U.TotalCheckouts, U.PhoneNumber, U.Email, U.LateReturns
 	FROM Library.Users u
 	ORDER BY U.TotalCheckouts, U.UserId;
+GO
+
+CREATE PROCEDURE [Library].IncrementCheckouts
+     @UserId INT
+AS
+     UPDATE [Library].Users
+     SET TotalCheckouts = TotalCheckouts + 1
+     WHERE UserId = @UserId;
 GO
 
 CREATE PROCEDURE [Library].ReturnCheckedOut

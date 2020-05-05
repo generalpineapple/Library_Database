@@ -58,6 +58,32 @@ namespace LibraryDatabaseWPF
             }
         }
 
+        public void IncrementCheckouts(int userId)
+        {
+            using (var transaction = new TransactionScope())
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    using (var command = new SqlCommand("Library.IncrementCheckouts", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("UserId", userId);
+
+                        connection.Open();
+
+                        command.ExecuteNonQuery();
+
+                        transaction.Complete();
+
+                        //var transactionId = (int)command.Parameters["TransactionId"].Value;
+
+                        //return FetchTransactionById(transactionId);
+                    }
+                }
+            }
+        }
+
+
         public CheckedOut FetchTransactionById(int transactionId)
         {
             using (var transaction = new TransactionScope())

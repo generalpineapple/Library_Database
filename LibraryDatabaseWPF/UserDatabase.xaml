@@ -25,6 +25,7 @@
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                 <TextBlock Text="Name: "/>
                                 <TextBlock Text="{Binding Path=Name}"/>
+                                <TextBlock Text="   "/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <TextBlock Text="User ID: "/>
@@ -32,16 +33,26 @@
                             </StackPanel>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Phone Number: "/>
-                            <TextBlock Text="{Binding Path=PhoneNumber}"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                <TextBlock Text="Phone Number: "/>
+                                <TextBlock Text="{Binding Path=PhoneNumber}"/>
+                                <TextBlock Text="   "/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <TextBlock Text="Email: "/>
+                                <TextBlock Text="{Binding Path=Email}"/>
+                            </StackPanel>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Email: "/>
-                            <TextBlock Text="{Binding Path=Email}"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Late Returns: "/>
-                            <TextBlock Text="{Binding Path=LateReturns}"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                <TextBlock Text="Total Checkouts: "/>
+                                <TextBlock Text="{Binding Path=TotalCheckouts}"/>
+                                <TextBlock Text="   "/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <TextBlock Text="Late Returns: "/>
+                                <TextBlock Text="{Binding Path=LateReturns}"/>
+                            </StackPanel>
                         </StackPanel>
                     </StackPanel>
                 </DataTemplate>
