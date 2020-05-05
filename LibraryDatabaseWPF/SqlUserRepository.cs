@@ -195,6 +195,30 @@ namespace LibraryDatabaseWPF
                 }
             }
         }
+        public IReadOnlyList<Users> FetchUserByName(string name)
+        {
+            // Save to database.
+            using (var transaction = new TransactionScope())
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    using (var command = new SqlCommand("Library.FetchUserByName", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("Name", name);
+
+                        connection.Open();
+
+                        //command.ExecuteNonQuery();
+
+                        // transaction.Complete();
+
+                        using (var reader = command.ExecuteReader())
+                            return TranslateUsers(reader);
+                    }
+                }
+            }
+        }
 
         public UserReport CreateUserReport( string userName)
         {
@@ -282,8 +306,7 @@ namespace LibraryDatabaseWPF
             {
                 users.Add(
                     new Users(
-                        //reader.GetInt32(userIdOrdinal),
-                        1,
+                        reader.GetInt32(userIdOrdinal),
                         reader.GetString(userNameOrdinal),
                         reader.GetInt32(totalCheckoutsOrdinal),
                         reader.GetString(phoneNumberOrdinal),

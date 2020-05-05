@@ -20,5 +20,8 @@ namespace LibraryDatabaseWPF
         IReadOnlyList<Users> GetTopUsers();
 
         IReadOnlyList<Users> FetchAllUsers();
+
+        IReadOnlyList<Users> FetchUserByName(string name);
+
     }
 }

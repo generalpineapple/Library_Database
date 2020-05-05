@@ -164,6 +164,7 @@ namespace LibraryDatabaseWPF
         {
             if (DataContext is ViewModel viewModel)
             {
+                uxListBox.ItemsSource = new List<Users>(); 
                 uxListBox.ItemsSource = viewModel.UserList;
             }
         }

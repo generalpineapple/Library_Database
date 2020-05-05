@@ -17,6 +17,7 @@ DROP PROCEDURE IF EXISTS Library.FetchBookByTitle;
 DROP PROCEDURE IF EXISTS Library.FetchBooksToReplace;
 DROP PROCEDURE IF EXISTS Library.FetchInventoryByISBN;
 DROP PROCEDURE IF EXISTS Library.FetchTransactionById;
+DROP PROCEDURE IF EXISTS [Library].FetchUserByName;
 DROP PROCEDURE IF EXISTS Library.FetchUsersRentingBookByISBN;
 DROP PROCEDURE IF EXISTS Library.GetAuthorIdFromName;
 DROP PROCEDURE IF EXISTS Library.GetAuthorNameFromId;
@@ -69,9 +70,8 @@ CREATE OR ALTER PROCEDURE Library.CreateInventory
    @ISBN NVARCHAR(16),
    @TotalCopies INT,
 AS
-
 INSERT Library.Inventory(ISBN, TotalCopies)
-VALUES(@AuthorName, @TotalCopies);
+VALUES(@ISBN, @TotalCopies);
 GO
 
 CREATE PROCEDURE [Library].CreateUserReport
@@ -117,13 +117,12 @@ CREATE OR ALTER PROCEDURE Library.CreateUser
    @Name NVARCHAR(256),
    @Address NVARCHAR(256),
    @PhoneNumber NVARCHAR(256),
-   @Email NVARCHAR(256),
-   @UserId INT OUTPUT
+   @Email NVARCHAR(256)
 AS
 INSERT Library.Users(Name, Address, PhoneNumber, Email)
 VALUES(@Name, @Address, @PhoneNumber, @Email);
-SET @UserId = SCOPE_IDENTITY();
 GO
+--SET @UserId = SCOPE_IDENTITY();
 
 CREATE PROCEDURE [Library].EditBookQuality
    @BookId INT,
@@ -179,6 +178,14 @@ SELECT U.UserId, U.Name, U.TotalCheckouts, U.PhoneNumber, U.Email, U.LateReturns
 FROM Library.Users U;
 GO
 
+CREATE PROCEDURE [Library].FetchUserByName
+   @Name NVARCHAR(256)
+AS
+SELECT U.UserId, U.Name, U.TotalCheckouts, U.PhoneNumber, U.Email, U.LateReturns
+FROM Library.Users U
+WHERE U.Name Like @Name;
+GO
+
 CREATE PROCEDURE [Library].FetchBookByAuthor
    @Author NVARCHAR(256)
 AS
@@ -210,9 +217,9 @@ CREATE PROCEDURE [Library].FetchBooksToReplace
 AS
 SELECT  B.BookId, B.ISBN, B.Title, B.AuthorId, B.GenreId, B.ConditionId
 FROM Library.Books B
-    INNER JOIN  
+    INNER JOIN
         Library.Condition C ON C.ConditionId = B.ConditionId
-WHERE 
+WHERE
     C.ConditionType = 'Replace'
 ORDER BY
     B.BookId ASC;
@@ -238,7 +245,7 @@ GO
 CREATE PROCEDURE [Library].FetchUsersRentingBookByISBN
    @ISBN INT
 AS
-    SELECT U.UserId, U.[Name], U.PhoneNumber
+    SELECT U.UserId, U.Name, U.TotalCheckouts, U.PhoneNumber, U.Email, U.LateReturns
     FROM [Library].CheckedOut Ch
     INNER JOIN [Library].Users U ON Ch.UserId = U.UserId
 	    INNER JOIN [Library].Books B ON Ch.BookId = B.BookId
@@ -326,13 +333,9 @@ GO
 
 CREATE PROCEDURE [Library].GetTopUsers
 AS
-	SELECT TOP(10)
-		u.Name,
-		u.UserId,
-		u.TotalCheckouts,
-		u.LateReturns
+     SELECT TOP (10) U.UserId, U.Name, U.TotalCheckouts, U.PhoneNumber, U.Email, U.LateReturns
 	FROM Library.Users u
-	ORDER BY u.TotalCheckouts;
+	ORDER BY U.TotalCheckouts, U.UserId;
 GO
 
 CREATE PROCEDURE [Library].ReturnCheckedOut
@@ -343,3 +346,4 @@ AS
 	SET ReturnedDate = GETDATE()
 	WHERE TransactionId = @TransactionId OR BookId = @BookId;
 GO
+

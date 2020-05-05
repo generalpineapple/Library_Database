@@ -21,11 +21,15 @@ namespace LibraryDatabaseWPF
     /// </summary>
     public partial class AddEditUser : Page
     {
+        private ViewModel view = new ViewModel();
+
         //default to -1 as there are no negative keys
         private int userId = -1;
         public AddEditUser()
         {
             InitializeComponent();
+
+            DataContext = view; 
         }
 
         /// <summary>
@@ -38,6 +42,8 @@ namespace LibraryDatabaseWPF
             uxName.Text = users.Name;
             uxEmail.Text = users.Email;
             uxNumber.Text = users.PhoneNumber;
+            DataContext = view;
+
             //TODO: add Address
         }
 
